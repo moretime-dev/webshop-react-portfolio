@@ -1,0 +1,154 @@
+.homeContainer {
+  max-width: 1920px;
+  margin: 4em auto;
+}
+
+.headline {
+  margin-top: 0.7em;
+  font-family: "Great Vibes", sans-serif;
+  font-size: 5rem;
+  letter-spacing: 0.2em;
+  text-shadow: 1px 1px 3px rgb(236, 176, 45);
+  animation: headline 0.6s ease-in forwards;
+}
+
+@keyframes headline {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.subHeadline {
+  letter-spacing: 0.1em;
+  animation: subHeadline 0.6s ease-in 0.6s forwards;
+  opacity: 0;
+}
+
+.leaves {
+  color: rgb(32, 177, 32);
+}
+
+@keyframes subHeadline {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.paragraphContainer {
+  width: 35vw;
+  padding: 1em;
+  margin: 8em auto 12em auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-weight: bold;
+}
+
+.fair {
+  height: 40vh;
+  background-image: url("../../assets/img/fair.jpg");
+  background-color: rgba(155, 140, 92, 0.5);
+  background-blend-mode: darken;
+  object-fit: cover;
+  opacity: 0;
+  animation: fair 0.4s ease-in 1s forwards;
+}
+
+@keyframes fair {
+  0% {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+  85% {
+    transform: scale(1.05);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.moneyBack {
+  height: 40vh;
+  background-image: url("../../assets/img/moneyback.jpg");
+  background-color: rgba(155, 140, 92, 0.5);
+  background-blend-mode: darken;
+  object-fit: cover;
+}
+
+.green {
+  height: 40vh;
+  background-image: url("../../assets/img/green.jpg");
+  background-color: rgba(155, 140, 92, 0.5);
+  background-blend-mode: darken;
+  object-fit: cover;
+}
+
+.argument {
+  width: 28ch;
+  font-size: 2rem;
+  border-radius: 0.6em;
+  text-shadow: 1px 1px 2px rgb(8, 8, 8);
+}
+
+.intersectingAnimation {
+  animation: moneyBackAnimation 1s ease-in-out forwards;
+}
+
+@keyframes moneyBackAnimation {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+
+  70% {
+    opacity: 1;
+    transform: translateX(7%);
+  }
+  85% {
+    transform: translateX(-7%);
+  }
+  95% {
+    transform: translateX(3%);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.intersectingAnimation2 {
+  animation: greenAnimation 1s ease-in-out forwards;
+}
+
+@keyframes greenAnimation {
+  0% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+
+  70% {
+    opacity: 1;
+    transform: translateX(-7%);
+  }
+  85% {
+    transform: translateX(7%);
+  }
+  95% {
+    transform: translateX(-3%);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}

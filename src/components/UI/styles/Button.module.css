@@ -1,0 +1,13 @@
+.button {
+  padding: 0 2em;
+  border-radius: 1em;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.buttonText {
+  font-size: 1.5rem;
+}

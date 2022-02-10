@@ -1,0 +1,12 @@
+.button {
+  background-color: rgb(230, 169, 39);
+}
+
+.badge {
+  margin: 0 0.5em;
+  padding: 0 1em;
+  background-color: rgba(8, 8, 20, 0.6);
+  font-weight: bold;
+  color: white;
+  border-radius: 0.5em;
+}

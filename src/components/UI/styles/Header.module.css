@@ -1,0 +1,36 @@
+.header {
+  display: flex;
+  align-items: flex-start;
+  height: 40vh;
+  background-image: url("../../../assets/img/header.jpg");
+  background-color: rgb(101, 138, 138);
+  color: white;
+}
+
+.navContainer {
+  position: fixed;
+  width: 100vw;
+  background-color: rgba(8, 8, 20, 0.6);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 1em 0;
+  z-index: 100;
+}
+
+.logoContainer {
+  background-color: rgb(230, 169, 39);
+  box-shadow: 1px 1px 2px rgb(114, 194, 197);
+  border-radius: 1em;
+  padding: 1em 2em;
+}
+
+.logo {
+  font-size: 3rem;
+  padding: 0;
+  margin: 0;
+}
+.companyName {
+  margin-left: 0;
+  font-weight: bold;
+}
