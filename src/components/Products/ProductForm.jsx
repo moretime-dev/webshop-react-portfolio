@@ -16,6 +16,7 @@ const ProductForm = ({ onSubmitHandler }) => {
   const [productPrice, setProductPrice] = useState("");
   const [productOnSale, setProductOnSale] = useState("no");
   const [productDiscount, setProductDiscount] = useState("");
+  const [productImage, setProductImage] = useState("");
 
   const [showDiscountInput, setShowDiscountInput] = useState(false);
   const [productData, setProductData] = useState({});
@@ -26,6 +27,7 @@ const ProductForm = ({ onSubmitHandler }) => {
   const [validProductPrice, setValidProductPrice] = useState(false);
   const [validProductOnSale, setValidProductOnSale] = useState(false);
   const [validProductDiscount, setValidProductDiscount] = useState(false);
+  const [validFileInput, setValidFileInput] = useState(false);
 
   const onProductNameChangeHandler = (event) => {
     setProductName(event.target.value);
@@ -49,6 +51,10 @@ const ProductForm = ({ onSubmitHandler }) => {
 
   const onProductDiscountChangeHandler = (event) => {
     setProductDiscount(Number(event.target.value));
+  };
+
+  const onImageChangeHandler = (event) => {
+    setProductImage(event.target.value);
   };
 
   useEffect(() => {
@@ -99,13 +105,20 @@ const ProductForm = ({ onSubmitHandler }) => {
       setValidProductDiscount(true);
     }
 
+    if (productImage !== "") {
+      setValidFileInput(true);
+    } else {
+      setValidFileInput(false);
+    }
+
     if (
       validProductName &&
       validProductCategory &&
       validProductDescription &&
       validProductPrice &&
       validProductOnSale &&
-      validProductDiscount
+      validProductDiscount &&
+      validFileInput
     ) {
       setProductData({
         name: productName,
@@ -125,6 +138,7 @@ const ProductForm = ({ onSubmitHandler }) => {
     productPrice,
     productOnSale,
     productDiscount,
+    productImage,
     showDiscountInput,
     validProductName,
     validProductCategory,
@@ -132,6 +146,7 @@ const ProductForm = ({ onSubmitHandler }) => {
     validProductPrice,
     validProductOnSale,
     validProductDiscount,
+    validFileInput,
   ]);
 
   const onAddProductFormSubmitHandler = (event) => {
@@ -237,7 +252,13 @@ const ProductForm = ({ onSubmitHandler }) => {
 
         <div className={styles.formField}>
           <label htmlFor="image">Image: </label>
-          <input id="image" name="imageFile" type="file" />
+          <input
+            id="image"
+            name="imageFile"
+            type="file"
+            className={`${validFileInput && styles.validFormField}`}
+            onChange={onImageChangeHandler}
+          />
         </div>
 
         <Button
