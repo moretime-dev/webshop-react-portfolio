@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 
 import { AiOutlineHome, AiOutlineFileAdd } from "react-icons/ai";
-import { FiSmile } from "react-icons/fi";
+import { FiSmile, FiPercent } from "react-icons/fi";
 
 import styles from "./styles/Nav.module.css";
 
@@ -24,6 +24,15 @@ const Nav = () => {
             <FiSmile />
           </span>{" "}
           <span className={styles.linkName}> PRODUCTS</span>
+        </NavLink>
+      </li>
+      <li>
+        <NavLink to="/sale" className={styles.navLink}>
+          <span className={styles.symbol}>
+            {" "}
+            <FiPercent />
+          </span>{" "}
+          <span className={styles.linkName}> SALE</span>
         </NavLink>
       </li>
       <li>

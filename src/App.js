@@ -6,6 +6,7 @@ import Products from "./pages/Products";
 import AddProduct from "./pages/AddProduct";
 import NotFound from "./pages/NotFound";
 import ProductDetails from "./components/Products/ProductDetails";
+import Sale from "./pages/Sale";
 import "./App.css";
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
           <Route path="/" exact element={<Home />} />
           <Route path="/products" exact element={<Products />} />
           <Route path="/products/:id" element={<ProductDetails />} />
+          <Route path="/sale" element={<Sale />} />
           <Route path="/add-product" exact element={<AddProduct />} />
           <Route path="*" exact element={<NotFound />} />
         </Routes>

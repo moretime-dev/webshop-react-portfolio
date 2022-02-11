@@ -1,23 +1,31 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 import styles from "./styles/ProductForm.module.css";
 
 import Button from "../UI/Button";
 
 const ProductForm = ({ onSubmitHandler }) => {
+  const navigate = useNavigate();
+
   const [buttonDisabled, setButtonDisabled] = useState(true);
 
   const [productName, setProductName] = useState("");
   const [productCategory, setProductCategory] = useState("");
   const [productDescription, setProductDescription] = useState("");
   const [productPrice, setProductPrice] = useState("");
+  const [productOnSale, setProductOnSale] = useState("no");
+  const [productDiscount, setProductDiscount] = useState("");
 
+  const [showDiscountInput, setShowDiscountInput] = useState(false);
   const [productData, setProductData] = useState({});
 
   const [validProductName, setValidProductName] = useState(false);
   const [validProductCategory, setValidProductCategory] = useState(false);
   const [validProductDescription, setValidProductDescription] = useState(false);
   const [validProductPrice, setValidProductPrice] = useState(false);
+  const [validProductOnSale, setValidProductOnSale] = useState(false);
+  const [validProductDiscount, setValidProductDiscount] = useState(false);
 
   const onProductNameChangeHandler = (event) => {
     setProductName(event.target.value);
@@ -35,6 +43,14 @@ const ProductForm = ({ onSubmitHandler }) => {
     setProductPrice(Number(event.target.value));
   };
 
+  const onProductOnSaleChangeHandler = (event) => {
+    setProductOnSale(event.target.value);
+  };
+
+  const onProductDiscountChangeHandler = (event) => {
+    setProductDiscount(Number(event.target.value));
+  };
+
   useEffect(() => {
     if (productName !== "") {
       setValidProductName(true);
@@ -50,19 +66,54 @@ const ProductForm = ({ onSubmitHandler }) => {
 
     if (productPrice !== "" && productPrice > 0) {
       setValidProductPrice(true);
-    } else setValidProductPrice(false);
+    } else {
+      setValidProductPrice(false);
+      setProductPrice("");
+    }
+
+    if (productOnSale !== "") {
+      setValidProductOnSale(true);
+    } else {
+      setValidProductOnSale(false);
+    }
+
+    if (productOnSale === "yes") {
+      setShowDiscountInput(true);
+    } else {
+      setShowDiscountInput(false);
+    }
+
+    if (showDiscountInput) {
+      if (
+        productDiscount !== "" &&
+        productDiscount > 0 &&
+        productDiscount <= 100
+      ) {
+        setValidProductDiscount(true);
+      } else {
+        setValidProductDiscount(false);
+        setProductDiscount("");
+      }
+    } else {
+      setProductDiscount("");
+      setValidProductDiscount(true);
+    }
 
     if (
       validProductName &&
       validProductCategory &&
       validProductDescription &&
-      validProductPrice
+      validProductPrice &&
+      validProductOnSale &&
+      validProductDiscount
     ) {
       setProductData({
         name: productName,
         category: productCategory,
         description: productDescription,
         price: productPrice,
+        onSale: productOnSale,
+        discount: productDiscount,
       });
 
       setButtonDisabled(false);
@@ -72,10 +123,15 @@ const ProductForm = ({ onSubmitHandler }) => {
     productCategory,
     productDescription,
     productPrice,
+    productOnSale,
+    productDiscount,
+    showDiscountInput,
     validProductName,
     validProductCategory,
     validProductDescription,
     validProductPrice,
+    validProductOnSale,
+    validProductDiscount,
   ]);
 
   const onAddProductFormSubmitHandler = (event) => {
@@ -93,6 +149,11 @@ const ProductForm = ({ onSubmitHandler }) => {
     setProductCategory("");
     setProductDescription("");
     setProductPrice("");
+    setProductOnSale("no");
+    setProductDiscount(0);
+
+    form.reset();
+    navigate("/products");
   };
 
   return (
@@ -147,6 +208,33 @@ const ProductForm = ({ onSubmitHandler }) => {
             className={`${validProductPrice && styles.validFormField}`}
           />
         </div>
+        <div className={styles.formField}>
+          <label htmlFor="onSale">On Sale? </label>
+          <select
+            id="onSale"
+            type="text"
+            value={productOnSale}
+            onChange={onProductOnSaleChangeHandler}
+            className={`${validProductOnSale && styles.validFormField}`}
+          >
+            <option value="no">No</option>
+            <option value="yes">Yes</option>
+          </select>
+        </div>
+        {showDiscountInput && (
+          <div className={styles.formField}>
+            <label htmlFor="discount">Discount(% 1 - 100): </label>
+            <input
+              id="discount"
+              type="number"
+              autoComplete="off"
+              value={productDiscount}
+              onChange={onProductDiscountChangeHandler}
+              className={`${validProductDiscount && styles.validFormField}`}
+            />
+          </div>
+        )}
+
         <div className={styles.formField}>
           <label htmlFor="image">Image: </label>
           <input id="image" name="imageFile" type="file" />

@@ -23,11 +23,17 @@ const AddProduct = () => {
       }
     ).then((response) => response.json());
 
+    if (productData.discount === "") {
+      productData.discount = 0;
+    }
+
     const dataForFirebase = {
       name: productData.name,
       category: productData.category,
       description: productData.description,
       price: productData.price,
+      onSale: productData.onSale,
+      discount: productData.discount,
       imgPath: data.secure_url,
     };
 
