@@ -13,7 +13,7 @@ const AddProduct = () => {
       formData.append("file", file);
     }
 
-    formData.append("upload_preset", "my-uploads");
+    formData.append("upload_preset", "webshop-react-images");
 
     const data = await fetch(
       "https://api.cloudinary.com/v1_1/dzdihp1nk/image/upload",

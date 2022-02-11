@@ -198,7 +198,7 @@ const ProductForm = ({ onSubmitHandler }) => {
             <option value="">--Select Category--</option>
             <option value="clothes">Clothes</option>
             <option value="shoes">Shoes</option>
-            <option value="accesoires">Accesoires</option>
+            <option value="accessoires">Accessoires</option>
             <option value="electronics">Electronics</option>
             <option value="travel">Travel</option>
           </select>
