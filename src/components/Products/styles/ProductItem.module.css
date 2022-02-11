@@ -1,0 +1,31 @@
+.card {
+  width: 20vw;
+  background-color: rgb(235, 195, 110);
+  cursor: pointer;
+  height: 40vh;
+}
+
+.productContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40vh;
+}
+
+.imgContainer {
+  width: 40%;
+  margin-right: 2em;
+  border-radius: 1em;
+  /* border: 2px solid red; */
+}
+
+.img {
+  width: 100%;
+  border-radius: 1em;
+  box-shadow: 2px 2px 3px grey;
+}
+
+.infoContainer {
+  display: flex;
+  flex-direction: column;
+}

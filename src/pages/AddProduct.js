@@ -1,10 +1,14 @@
+import { useContext } from "react";
+import { ProductsContext } from "../store/products-context.js";
+
 import { db } from "../firebase_config";
-import { collection, addDoc } from "firebase/firestore";
+import { collection, addDoc, getDocs } from "firebase/firestore";
 
 import ProductForm from "../components/Products/ProductForm";
 
+const productsCollection = collection(db, "products");
 const AddProduct = () => {
-  const productsCollection = collection(db, "products");
+  const [products, setProducts] = useContext(ProductsContext);
 
   const onSubmitDataHandler = async (productData, fileInput) => {
     const formData = new FormData();
@@ -38,6 +42,15 @@ const AddProduct = () => {
     };
 
     await addDoc(productsCollection, dataForFirebase);
+
+    const newStuff = await getDocs(productsCollection);
+
+    const productsArray = newStuff.docs.map((doc) => ({
+      ...doc.data(),
+      id: doc.id,
+    }));
+
+    setProducts(productsArray);
   };
 
   return <ProductForm onSubmitHandler={onSubmitDataHandler} />;

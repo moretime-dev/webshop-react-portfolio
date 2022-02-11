@@ -168,7 +168,8 @@ const ProductForm = ({ onSubmitHandler }) => {
     setProductDiscount(0);
 
     form.reset();
-    navigate("/products");
+
+    navigate("/add-product-confirm");
   };
 
   return (
