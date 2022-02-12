@@ -43,9 +43,9 @@ const AddProduct = () => {
 
     await addDoc(productsCollection, dataForFirebase);
 
-    const newStuff = await getDocs(productsCollection);
+    const updatedCollection = await getDocs(productsCollection);
 
-    const productsArray = newStuff.docs.map((doc) => ({
+    const productsArray = updatedCollection.docs.map((doc) => ({
       ...doc.data(),
       id: doc.id,
     }));

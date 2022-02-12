@@ -1,0 +1,14 @@
+.filterContainer {
+  display: block;
+  margin-top: 3em;
+}
+
+.category {
+  margin-right: 1em;
+  cursor: pointer;
+  font-size: 1.5rem;
+}
+
+.category:hover {
+  color: rgb(230, 169, 39);
+}
