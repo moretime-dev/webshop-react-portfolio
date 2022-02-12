@@ -1,32 +1,32 @@
-.loginFormCard {
+.userFormCard {
   background-color: rgb(238, 181, 58);
   width: 30vw;
   margin-top: 10em;
 }
 
-.loginHeadline {
+.userHeadline {
   margin-top: 1em;
   color: white;
 }
 
-.loginFormContainer {
+.userFormContainer {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
 }
 
-.loginField {
+.userField {
   width: 40%;
   margin-top: 2em;
 }
 
-.loginInput:focus,
-.loginButton:focus {
+.userInput:focus,
+.userButton:focus {
   outline: none;
   border: 2px solid black;
 }
 
-.loginButton {
+.userButton {
   margin: 4em auto;
 }

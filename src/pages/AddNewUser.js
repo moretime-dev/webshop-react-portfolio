@@ -1,7 +1,11 @@
 import SignUpForm from "../components/Users/SignUpForm";
 
 const AddNewUser = () => {
-  return <SignUpForm />;
+  const onSignUpFormSubmitHandler = (userData) => {
+    console.log(userData);
+  };
+
+  return <SignUpForm onPassUserData={onSignUpFormSubmitHandler} />;
 };
 
 export default AddNewUser;

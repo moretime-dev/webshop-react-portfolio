@@ -10,6 +10,9 @@ import ProductDetails from "./components/Products/ProductDetails";
 import Sale from "./pages/Sale";
 import AddNewUser from "./pages/AddNewUser";
 import LoginUser from "./pages/LoginUser";
+import ConfirmNewUserAdded from "./pages/ConfirmNewUserAdded";
+import CartPage from "./pages/CartPage";
+
 import "./App.css";
 
 import { ProductsProvider } from "./store/products-context";
@@ -25,6 +28,7 @@ function App() {
             <Route path="/products" exact element={<Products />} />
             <Route path="/products/:id" element={<ProductDetails />} />
             <Route path="/sale" element={<Sale />} />
+            <Route path="/cart" element={<CartPage />} />
             <Route path="/add-product" exact element={<AddProduct />} />
             <Route
               path="/add-product-confirm"
@@ -32,6 +36,7 @@ function App() {
               element={<ConfirmNewProductUpload />}
             />
             <Route path="add-new-user" element={<AddNewUser />} />
+            <Route path="sign-up-success" element={<ConfirmNewUserAdded />} />
             <Route path="login-user" element={<LoginUser />} />
             <Route path="*" exact element={<NotFound />} />
           </Routes>

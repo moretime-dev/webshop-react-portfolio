@@ -10,13 +10,16 @@ const Header = () => {
   return (
     <header className={styles.header}>
       <div className={styles.navContainer}>
-        <div className={styles.logoContainer}>
-          <span className={styles.logo}>
+        <Link to="/">
+          <div className={styles.logoContainer}>
             {" "}
-            <SiActigraph />
-          </span>
-          <span className={styles.companyName}> WeShop</span>
-        </div>
+            <span className={styles.logo}>
+              {" "}
+              <SiActigraph />
+            </span>
+            <span className={styles.companyName}> WeShop</span>
+          </div>
+        </Link>
         <Nav />
         <Cart />
         <div className={styles.userHandling}>
