@@ -7,7 +7,7 @@ import FilterProducts from "../UI/FilterProducts.jsx";
 import styles from "./styles/ProductsList.module.css";
 
 const ProductsList = () => {
-  const [products, setProducts] = useContext(ProductsContext);
+  const [products] = useContext(ProductsContext);
 
   return (
     <div>

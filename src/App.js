@@ -8,6 +8,8 @@ import ConfirmNewProductUpload from "./pages/ConfirmNewProductUpload";
 import NotFound from "./pages/NotFound";
 import ProductDetails from "./components/Products/ProductDetails";
 import Sale from "./pages/Sale";
+import AddNewUser from "./pages/AddNewUser";
+import LoginUser from "./pages/LoginUser";
 import "./App.css";
 
 import { ProductsProvider } from "./store/products-context";
@@ -29,6 +31,8 @@ function App() {
               exact
               element={<ConfirmNewProductUpload />}
             />
+            <Route path="add-new-user" element={<AddNewUser />} />
+            <Route path="login-user" element={<LoginUser />} />
             <Route path="*" exact element={<NotFound />} />
           </Routes>
         </BrowserRouter>

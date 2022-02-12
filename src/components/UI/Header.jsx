@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 import styles from "./styles/Header.module.css";
 import { SiActigraph } from "react-icons/si";
 
@@ -17,6 +19,14 @@ const Header = () => {
         </div>
         <Nav />
         <Cart />
+        <div className={styles.userHandling}>
+          <Link to="/add-new-user" className={styles.userHandlingLink}>
+            Sign Up
+          </Link>
+          <Link to="/login-user" className={styles.userHandlingLink}>
+            Login
+          </Link>
+        </div>
       </div>
     </header>
   );

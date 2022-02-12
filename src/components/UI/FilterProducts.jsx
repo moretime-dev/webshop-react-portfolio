@@ -1,4 +1,4 @@
-import { useContext, useState, useEffect } from "react";
+import { useContext } from "react";
 import { ProductsContext } from "../../store/products-context.js";
 
 import { db } from "../../firebase_config";

@@ -5,8 +5,7 @@ import Card from "../UI/Card";
 import styles from "./styles/ProductItem.module.css";
 
 const ProductItem = (props) => {
-  const { category, description, discount, imgPath, name, onSale, price, id } =
-    props.product;
+  const { category, imgPath, name, price, id } = props.product;
 
   return (
     <Link to={`/products/${id}`}>

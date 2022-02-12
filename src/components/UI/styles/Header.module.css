@@ -12,7 +12,7 @@
   width: 100vw;
   background-color: rgba(8, 8, 20, 0.6);
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   padding: 1em 0;
   z-index: 100;
@@ -23,6 +23,7 @@
   box-shadow: 1px 1px 2px rgb(114, 194, 197);
   border-radius: 1em;
   padding: 1em 2em;
+  margin-left: 3em;
 }
 
 .logo {
@@ -33,4 +34,15 @@
 .companyName {
   margin-left: 0;
   font-weight: bold;
+}
+
+.userHandling {
+  /* border: 2px solid red; */
+  padding: 3em 2em;
+  z-index: 100;
+}
+
+.userHandlingLink {
+  color: white;
+  margin-right: 1em;
 }
