@@ -26,10 +26,16 @@ const FilterProducts = () => {
       ...doc.data(),
       id: doc.id,
     }));
-    console.log(productsArray);
-    const filteredProducts = productsArray.filter(
-      (product) => product.category === category
-    );
+
+    let filteredProducts = [];
+
+    if (category === "all") {
+      filteredProducts = productsArray;
+    } else {
+      filteredProducts = productsArray.filter(
+        (product) => product.category === category
+      );
+    }
 
     setProducts(filteredProducts);
   };
