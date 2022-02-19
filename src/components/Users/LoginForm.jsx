@@ -1,5 +1,7 @@
 import { useContext, useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { UsersContext } from "../../store/users-context";
+// import { AuthContext } from "../../store/auth-context";
 
 import Card from "../UI/Card";
 import Button from "../UI/Button";
@@ -8,10 +10,13 @@ import styles from "./styles/UserForm.module.css";
 
 const LoginForm = () => {
   const [users] = useContext(UsersContext);
+
   const [userEmail, setUserEmail] = useState("");
   const [userPassword, setUserPassword] = useState("");
 
   const [currentUser, setCurrentUser] = useState({});
+
+  const navigate = useNavigate();
 
   const onUserEmailChangeHandler = (event) => {
     setUserEmail(event.target.value);
@@ -29,10 +34,14 @@ const LoginForm = () => {
         setCurrentUser({
           currentUserEmail: userEmail,
           currentUserId: user.id,
+          currentUserRole: user.role,
           currentUserIsLoggedIn: true,
         });
       }
     });
+
+    setTimeout(() => navigate("/"), 200);
+    setTimeout(() => window.location.reload(), 500);
   };
 
   useEffect(() => {

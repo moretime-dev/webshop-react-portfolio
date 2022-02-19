@@ -9,6 +9,7 @@ const usersCollection = collection(db, "users");
 
 export const UsersProvider = ({ children }) => {
   const [users, setUsers] = useState([]);
+  const [currentUser, setCurrentUser] = useState({});
 
   useEffect(() => {
     const fetchUsersFromFireBase = async () => {
@@ -23,6 +24,11 @@ export const UsersProvider = ({ children }) => {
     };
 
     fetchUsersFromFireBase();
+
+    let currentUserFromLocalStorage =
+      JSON.parse(localStorage.getItem("currentUser")) || {};
+
+    setCurrentUser(currentUserFromLocalStorage);
   }, []);
 
   return (
