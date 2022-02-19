@@ -4,10 +4,9 @@ import { db } from "../firebase_config";
 import { collection, addDoc } from "firebase/firestore";
 
 const usersCollection = collection(db, "users");
+
 const AddNewUser = () => {
   const onSignUpFormSubmitHandler = async (userData) => {
-    console.log(userData);
-
     const user = {
       userEmail: userData.userEmail,
       password: userData.userPassword,
