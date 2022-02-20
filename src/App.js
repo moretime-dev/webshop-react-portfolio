@@ -18,37 +18,40 @@ import "./App.css";
 import { ProductsProvider } from "./store/products-context";
 import { UsersProvider } from "./store/users-context";
 import { AuthProvider } from "./store/auth-context";
+import { CartProvider } from "./store/cart-context";
 
 function App() {
   return (
     <ProductsProvider>
       <UsersProvider>
         <AuthProvider>
-          <div className="App">
-            <BrowserRouter>
-              <Header />
-              <Routes>
-                <Route path="/" exact element={<Home />} />
-                <Route path="/products" exact element={<Products />} />
-                <Route path="/products/:id" element={<ProductDetails />} />
-                <Route path="/sale" element={<Sale />} />
-                <Route path="/cart" element={<CartPage />} />
-                <Route path="/add-product" exact element={<AddProduct />} />
-                <Route
-                  path="/add-product-confirm"
-                  exact
-                  element={<ConfirmNewProductUpload />}
-                />
-                <Route path="add-new-user" element={<AddNewUser />} />
-                <Route
-                  path="sign-up-success"
-                  element={<ConfirmNewUserAdded />}
-                />
-                <Route path="login-user" element={<LoginUser />} />
-                <Route path="*" exact element={<NotFound />} />
-              </Routes>
-            </BrowserRouter>
-          </div>
+          <CartProvider>
+            <div className="App">
+              <BrowserRouter>
+                <Header />
+                <Routes>
+                  <Route path="/" exact element={<Home />} />
+                  <Route path="/products" exact element={<Products />} />
+                  <Route path="/products/:id" element={<ProductDetails />} />
+                  <Route path="/sale" element={<Sale />} />
+                  <Route path="/cart" element={<CartPage />} />
+                  <Route path="/add-product" exact element={<AddProduct />} />
+                  <Route
+                    path="/add-product-confirm"
+                    exact
+                    element={<ConfirmNewProductUpload />}
+                  />
+                  <Route path="add-new-user" element={<AddNewUser />} />
+                  <Route
+                    path="sign-up-success"
+                    element={<ConfirmNewUserAdded />}
+                  />
+                  <Route path="login-user" element={<LoginUser />} />
+                  <Route path="*" exact element={<NotFound />} />
+                </Routes>
+              </BrowserRouter>
+            </div>
+          </CartProvider>
         </AuthProvider>
       </UsersProvider>
     </ProductsProvider>

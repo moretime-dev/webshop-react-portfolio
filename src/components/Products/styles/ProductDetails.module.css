@@ -1,0 +1,37 @@
+.productDetailsCard {
+  width: 40vw;
+  background-color: rgb(230, 169, 39);
+}
+
+.productDetailsContainer {
+  display: flex;
+}
+
+.productImageContainer {
+  width: 20%;
+  margin: 2em;
+}
+
+.productImage {
+  width: 100%;
+}
+
+.productDetailsTextContainer {
+  display: block;
+}
+
+.productTitleAndCategoryContainer {
+  margin: 1em auto;
+}
+
+.productDetailsPriceQuantityAddToCartContainer {
+  margin-top: 2em;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.productDetailsQuantity {
+  width: 3em;
+  text-align: center;
+}
