@@ -29,6 +29,8 @@ const ProductDetails = () => {
 
   const product = products.filter((product) => product.id === id);
 
+  const cartItem = productsInCart.filter((product) => product[0].id === id);
+
   const onProductQuantityDecreaseHandler = () => {
     if (productQuantity === 1) {
       return;
@@ -44,15 +46,18 @@ const ProductDetails = () => {
     event.preventDefault();
 
     if (currentUserIsLoggedIn && currentUserRole === "user") {
+      console.log(cartItem);
+
       if (productsInCart.length === 0) {
         const productToAddToCart = { ...product, productQuantity };
-        setProductsInCart([...productsInCart, productToAddToCart]);
+        setProductsInCart([productToAddToCart]);
       } else {
         productsInCart.forEach((productInCart) => {
           if (productInCart[0].id === id) {
             productInCart.productQuantity += productQuantity;
-          } else if (productInCart[0].id !== id) {
+          } else if (cartItem.length === 0) {
             const productToAddToCart = { ...product, productQuantity };
+
             setProductsInCart([...productsInCart, productToAddToCart]);
           }
         });
