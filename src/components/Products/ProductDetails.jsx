@@ -44,10 +44,21 @@ const ProductDetails = () => {
     event.preventDefault();
 
     if (currentUserIsLoggedIn && currentUserRole === "user") {
-      setproductsQuantity(productsQuantity + productQuantity);
+      if (productsInCart.length === 0) {
+        const productToAddToCart = { ...product, productQuantity };
+        setProductsInCart([...productsInCart, productToAddToCart]);
+      } else {
+        productsInCart.forEach((productInCart) => {
+          if (productInCart[0].id === id) {
+            productInCart.productQuantity += productQuantity;
+          } else if (productInCart[0].id !== id) {
+            const productToAddToCart = { ...product, productQuantity };
+            setProductsInCart([...productsInCart, productToAddToCart]);
+          }
+        });
+      }
+
       setProductQuantity(1);
-      const productToAddToCart = { ...product, productQuantity };
-      setProductsInCart([...productsInCart, productToAddToCart]);
     } else {
       setLoginPrompt("Please log in to add products to your cart.");
     }
