@@ -35,3 +35,8 @@
   width: 3em;
   text-align: center;
 }
+
+.productDetailsLoginPrompt {
+  margin-top: 1em;
+  color: rgb(35, 35, 153);
+}
