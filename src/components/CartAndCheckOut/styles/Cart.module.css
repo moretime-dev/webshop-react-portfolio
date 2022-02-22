@@ -34,7 +34,7 @@
 }
 
 .cartProductQuantity {
-  width: 2em;
+  width: 3em;
   text-align: center;
 }
 
@@ -50,4 +50,5 @@
   color: red;
   font-size: 2rem;
   margin-left: 1em;
+  cursor: pointer;
 }
