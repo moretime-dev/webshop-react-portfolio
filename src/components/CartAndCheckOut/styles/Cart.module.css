@@ -1,0 +1,53 @@
+.cartCard {
+  width: 50vw;
+  background-color: rgb(243, 183, 52);
+}
+
+.cartProductContainer {
+  display: flex;
+  align-items: center;
+}
+
+.cartImageContainer {
+  width: 20%;
+  margin-top: 1em;
+}
+
+.cartImage {
+  width: 40%;
+}
+
+.cartProductInfoContainer {
+  width: 70%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.cartProductInfoElement {
+  margin: 0 2em;
+  font-size: 1.4rem;
+}
+
+.cartQuantity {
+  display: flex;
+}
+
+.cartProductQuantity {
+  width: 2em;
+  text-align: center;
+}
+
+.cartButton {
+  width: 3em;
+  height: 3em;
+  padding: 0;
+  border-radius: 0.4em;
+  border: 1px solid black;
+}
+
+.cartDeleteProduct {
+  color: red;
+  font-size: 2rem;
+  margin-left: 1em;
+}

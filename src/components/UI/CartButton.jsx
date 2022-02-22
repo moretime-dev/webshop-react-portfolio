@@ -1,12 +1,12 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 
-import { CartContext } from "./../../store/cart-context";
+import { CartContext } from "../../store/cart-context";
 
 import Button from "./Button";
 
 import { BsCart4 } from "react-icons/bs";
-import styles from "./styles/Cart.module.css";
+import styles from "./styles/CartButton.module.css";
 
 const Cart = () => {
   const [productsQuantity, setproductsQuantity] = useContext(CartContext);

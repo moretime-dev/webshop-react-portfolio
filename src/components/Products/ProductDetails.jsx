@@ -64,6 +64,8 @@ const ProductDetails = () => {
       }
 
       setProductQuantity(1);
+    } else if (currentUserIsLoggedIn && currentUserRole === "admin") {
+      setLoginPrompt("Admin can not add products to cart.");
     } else {
       setLoginPrompt("Please log in to add products to your cart.");
     }

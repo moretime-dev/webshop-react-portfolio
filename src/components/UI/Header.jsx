@@ -7,7 +7,7 @@ import styles from "./styles/Header.module.css";
 import { SiActigraph } from "react-icons/si";
 
 import Nav from "./Nav";
-import Cart from "./Cart";
+import CartButton from "./CartButton";
 
 const Header = () => {
   const [currentUserRole, currentUserIsLoggedIn] = useContext(AuthContext);
@@ -36,7 +36,7 @@ const Header = () => {
           </div>
         </Link>
         <Nav />
-        <Cart />
+        <CartButton />
         {currentUserIsLoggedIn ? (
           <div className={styles.userHandling}>
             <Link

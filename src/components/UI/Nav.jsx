@@ -11,7 +11,10 @@ import styles from "./styles/Nav.module.css";
 const Nav = () => {
   const [currentUserRole, currentUserIsLoggedIn] = useContext(AuthContext);
 
-  console.log(currentUserIsLoggedIn, currentUserRole);
+  console.log(
+    "Is logged in: " + currentUserIsLoggedIn,
+    "Role: " + currentUserRole
+  );
 
   return (
     <ul className={styles.navContainer}>
