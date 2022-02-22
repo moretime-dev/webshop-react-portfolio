@@ -72,7 +72,7 @@ const Cart = () => {
                     {product[0].name}
                   </span>
                   <span className={styles.cartProductInfoElement}>
-                    €{product[0].price.toFixed(2)}
+                    €{(product[0].price * product.productQuantity).toFixed(2)}
                   </span>{" "}
                 </div>
               </Link>
