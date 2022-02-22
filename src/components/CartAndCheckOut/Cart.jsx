@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import { Link } from "react-router-dom";
 import { CartContext } from "../../store/cart-context";
 
 import Card from "../UI/Card";
@@ -35,13 +36,16 @@ const Cart = () => {
       (product) => product[0].id === id
     );
 
-    if (currentProduct[0].productQuantity === 1) {
-      return;
-    } else {
-      currentProduct[0].productQuantity = productQuantity + 1;
-    }
+    currentProduct[0].productQuantity = productQuantity + 1;
 
     setProductsInCart([...productsInCart]);
+  };
+
+  const onDeleteProductFromCartHandler = (id) => {
+    const updatedProductsInCart = productsInCart.filter(
+      (product) => product[0].id !== id
+    );
+    setProductsInCart([...updatedProductsInCart]);
   };
 
   return (
@@ -52,50 +56,62 @@ const Cart = () => {
         ) : (
           productsInCart.map((product) => (
             <div className={styles.cartProductContainer} key={product[0].id}>
-              <div className={styles.cartImageContainer}>
-                <img
-                  src={product[0].imgPath}
-                  alt={product[0].name}
-                  className={styles.cartImage}
-                />
-              </div>
-              <div className={styles.cartProductInfoContainer}>
-                <span className={styles.cartProductInfoElement}>
-                  {product[0].name}
-                </span>
-                <span className={styles.cartProductInfoElement}>
-                  €{product[0].price.toFixed(2)}
-                </span>
-                <div className={styles.cartQuantity}>
-                  <input
-                    type="number"
-                    readOnly
-                    value={product.productQuantity}
-                    className={styles.cartProductQuantity}
-                  />
-                  <Button
-                    buttonText="-"
-                    onClick={() =>
-                      onProductQuantityDecreaseHandler(
-                        product.productQuantity,
-                        product[0].id
-                      )
-                    }
-                    className={styles.cartButton}
-                  />
-                  <Button
-                    buttonText="+"
-                    onClick={() =>
-                      onProductQuantityIncreaseHandler(
-                        product.productQuantity,
-                        product[0].id
-                      )
-                    }
-                    className={styles.cartButton}
+              <Link
+                to={`/products/${product[0].id}`}
+                className={styles.cartProductInfoContainer}
+              >
+                <div className={styles.cartImageContainer}>
+                  <img
+                    src={product[0].imgPath}
+                    alt={product[0].name}
+                    className={styles.cartImage}
                   />
                 </div>
+                <div className={styles.cartProductInfoContainer}>
+                  <span className={styles.cartProductInfoElement}>
+                    {product[0].name}
+                  </span>
+                  <span className={styles.cartProductInfoElement}>
+                    €{product[0].price.toFixed(2)}
+                  </span>{" "}
+                </div>
+              </Link>
+
+              <div className={styles.cartQuantity}>
+                <input
+                  type="number"
+                  readOnly
+                  value={product.productQuantity}
+                  className={styles.cartProductQuantity}
+                />
+                <Button
+                  buttonText="-"
+                  onClick={() =>
+                    onProductQuantityDecreaseHandler(
+                      product.productQuantity,
+                      product[0].id
+                    )
+                  }
+                  className={styles.cartButton}
+                />
+                <Button
+                  buttonText="+"
+                  onClick={() =>
+                    onProductQuantityIncreaseHandler(
+                      product.productQuantity,
+                      product[0].id
+                    )
+                  }
+                  className={styles.cartButton}
+                />
               </div>
-              <span className={styles.cartDeleteProduct}>X</span>
+
+              <span
+                className={styles.cartDeleteProduct}
+                onClick={() => onDeleteProductFromCartHandler(product[0].id)}
+              >
+                X
+              </span>
             </div>
           ))
         )}

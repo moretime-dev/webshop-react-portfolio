@@ -9,8 +9,12 @@
 }
 
 .cartImageContainer {
-  width: 20%;
+  width: 40%;
   margin-top: 1em;
+}
+
+a {
+  color: #000;
 }
 
 .cartImage {
