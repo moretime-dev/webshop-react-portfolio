@@ -15,6 +15,7 @@ import CartPage from "./pages/CartPage";
 import CheckoutPage from "./pages/CheckoutPage";
 import EditUserData from "./pages/EditUserData";
 import UserData from "./pages/UserData";
+import OrderConfirmationPage from "./pages/OrderConfirmationPage";
 
 import "./App.css";
 
@@ -39,6 +40,10 @@ function App() {
                   <Route path="/sale" element={<Sale />} />
                   <Route path="/cart" element={<CartPage />} />
                   <Route path="/checkout" element={<CheckoutPage />} />
+                  <Route
+                    path="/order-confirmation"
+                    element={<OrderConfirmationPage />}
+                  />
                   <Route path="/add-product" exact element={<AddProduct />} />
                   <Route
                     path="/add-product-confirm"

@@ -31,8 +31,6 @@ const EditUserData = () => {
 
   const navigate = useNavigate();
 
-  console.log(currentUser);
-
   const onFullNameChangeHandler = (event) => {
     setFullName(event.target.value.trim());
   };

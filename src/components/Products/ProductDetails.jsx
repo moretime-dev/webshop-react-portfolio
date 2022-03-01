@@ -46,8 +46,6 @@ const ProductDetails = () => {
     event.preventDefault();
 
     if (currentUserIsLoggedIn && currentUserRole === "user") {
-      console.log(cartItem);
-
       if (productsInCart.length === 0) {
         const productToAddToCart = { ...product, productQuantity };
         setProductsInCart([productToAddToCart]);
