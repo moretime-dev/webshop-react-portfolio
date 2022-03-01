@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { CartContext } from "../../store/cart-context";
 
 import Card from "../UI/Card";
@@ -8,11 +8,14 @@ import Button from "../UI/Button";
 import styles from "./styles/Cart.module.css";
 
 const Cart = () => {
+  const navigate = useNavigate();
+
   const [
     productsQuantity,
     setproductsQuantity,
     productsInCart,
     setProductsInCart,
+    totalPrice,
   ] = useContext(CartContext);
 
   const onProductQuantityDecreaseHandler = (productQuantity, id) => {
@@ -46,6 +49,10 @@ const Cart = () => {
       (product) => product[0].id !== id
     );
     setProductsInCart([...updatedProductsInCart]);
+  };
+
+  const onGoToCheckoutClickHandler = () => {
+    navigate("/checkout");
   };
 
   return (
@@ -115,6 +122,15 @@ const Cart = () => {
             </div>
           ))
         )}
+      </div>
+      <div className={styles.cartTotalPrice}>
+        <span> TOTAL: €{totalPrice.toFixed(2)}</span>
+      </div>
+      <div className={styles.cardCheckoutButton}>
+        <Button
+          buttonText="Go To Checkout"
+          onClick={onGoToCheckoutClickHandler}
+        />
       </div>
     </Card>
   );

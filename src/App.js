@@ -12,6 +12,7 @@ import AddNewUser from "./pages/AddNewUser";
 import LoginUser from "./pages/LoginUser";
 import ConfirmNewUserAdded from "./pages/ConfirmNewUserAdded";
 import CartPage from "./pages/CartPage";
+import CheckoutPage from "./pages/CheckoutPage";
 
 import "./App.css";
 
@@ -35,6 +36,7 @@ function App() {
                   <Route path="/products/:id" element={<ProductDetails />} />
                   <Route path="/sale" element={<Sale />} />
                   <Route path="/cart" element={<CartPage />} />
+                  <Route path="checkout" element={<CheckoutPage />} />
                   <Route path="/add-product" exact element={<AddProduct />} />
                   <Route
                     path="/add-product-confirm"
