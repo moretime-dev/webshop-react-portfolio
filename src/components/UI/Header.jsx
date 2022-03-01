@@ -22,6 +22,8 @@ const Header = () => {
     setTimeout(() => window.location.reload(), 500);
   };
 
+  const onUserDataClickHandler = () => {};
+
   return (
     <header className={styles.header}>
       <div className={styles.navContainer}>
@@ -39,6 +41,13 @@ const Header = () => {
         <CartButton />
         {currentUserIsLoggedIn ? (
           <div className={styles.userHandling}>
+            <Link
+              to="/user-data"
+              className={styles.userHandlingLink}
+              onClick={onUserDataClickHandler}
+            >
+              My Profile
+            </Link>
             <Link
               to="/"
               className={styles.userHandlingLink}
