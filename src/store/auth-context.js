@@ -18,13 +18,7 @@ export const AuthProvider = ({ children }) => {
   ]);
 
   return (
-    <AuthContext.Provider
-      value={[
-        currentUserRole,
-        currentUserIsLoggedIn,
-        currentUserFromLocalStorage,
-      ]}
-    >
+    <AuthContext.Provider value={[currentUserRole, currentUserIsLoggedIn]}>
       {children}
     </AuthContext.Provider>
   );

@@ -13,6 +13,7 @@ import LoginUser from "./pages/LoginUser";
 import ConfirmNewUserAdded from "./pages/ConfirmNewUserAdded";
 import CartPage from "./pages/CartPage";
 import CheckoutPage from "./pages/CheckoutPage";
+import EditUserData from "./pages/EditUserData";
 import UserData from "./pages/UserData";
 
 import "./App.css";
@@ -50,6 +51,7 @@ function App() {
                     element={<ConfirmNewUserAdded />}
                   />
                   <Route path="/user-data" element={<UserData />} />
+                  <Route path="/edit-user-data" element={<EditUserData />} />
                   <Route path="login-user" element={<LoginUser />} />
                   <Route path="*" exact element={<NotFound />} />
                 </Routes>

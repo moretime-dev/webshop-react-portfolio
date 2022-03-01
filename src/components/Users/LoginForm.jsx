@@ -31,11 +31,16 @@ const LoginForm = () => {
 
     users.forEach((user) => {
       if (userEmail === user.userEmail && userPassword === user.password) {
+        console.log(user);
         setCurrentUser({
           currentUserEmail: userEmail,
           currentUserId: user.id,
           currentUserRole: user.role,
           currentUserIsLoggedIn: true,
+          currentUserFullName: user.fullName ? user.fullName : "",
+          currentUserStreetName: user.streetName ? user.streetName : "",
+          currentUserZipCode: user.zipCode ? user.zipCode : "",
+          currentUserCity: user.city ? user.city : "",
         });
       }
     });
