@@ -51,8 +51,6 @@ const CheckoutPage = () => {
   const onBuyNowButtonClickHandler = async () => {
     const userDoc = doc(db, "users", currentUser.currentUserId);
 
-    console.log(userDoc);
-
     await updateDoc(userDoc, orderHistory);
 
     navigate("/order-confirmation");
