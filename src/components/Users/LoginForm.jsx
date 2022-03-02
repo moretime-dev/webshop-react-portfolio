@@ -41,6 +41,7 @@ const LoginForm = () => {
           currentUserStreetName: user.streetName ? user.streetName : "",
           currentUserZipCode: user.zipCode ? user.zipCode : "",
           currentUserCity: user.city ? user.city : "",
+          currentUserOrderHistory: user.orderHistory ? user.orderHistory : "",
         });
       }
     });
