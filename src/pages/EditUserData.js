@@ -107,6 +107,7 @@ const EditUserData = () => {
       currentUserStreetName: streetName,
       currentUserZipCode: zipCode,
       currentUserCity: city,
+      currentUSerOrderHistory: currentUser.currentUserOrderHistory,
     };
 
     localStorage.setItem("currentUser", JSON.stringify(updatedUser));

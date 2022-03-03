@@ -45,13 +45,57 @@ const CheckoutPage = () => {
   };
 
   const orderHistory = {
-    orderHistory: currentOrderHistory,
+    orderHistory: [],
   };
 
+  for (let order in currentOrderHistory) {
+    orderHistory.orderHistory.push(currentOrderHistory[order]);
+  }
+
   const onBuyNowButtonClickHandler = async () => {
+    const newOrder = {
+      date: new Date(),
+      products: [...productsInCart],
+      totalAmount: totalPrice,
+      paymentMethod: paymentMethod,
+    };
+
+    const currentOrderHistory = [];
+
+    for (let thing in currentUser.currentUserOrderHistory) {
+      for (let order in currentUser.currentUserOrderHistory[thing]) {
+        currentOrderHistory.push(
+          currentUser.currentUserOrderHistory[thing][order]
+        );
+      }
+    }
+
+    currentOrderHistory.push(newOrder);
+
+    const orderHistory = {
+      orderHistory: [],
+    };
+
+    for (let order in currentOrderHistory) {
+      orderHistory.orderHistory.push(currentOrderHistory[order]);
+    }
     const userDoc = doc(db, "users", currentUser.currentUserId);
 
     await updateDoc(userDoc, orderHistory);
+
+    const updatedUser = {
+      currentUserEmail: currentUser.currentUserEmail,
+      currentUserId: currentUser.currentUserId,
+      currentUserRole: currentUser.currentUserRole,
+      currentUserIsLoggedIn: currentUser.currentUserIsLoggedIn,
+      currentUserFullName: currentUser.currentUserFullName,
+      currentUserStreetName: currentUser.currentUserStreetName,
+      currentUserZipCode: currentUser.currentUserZipCode,
+      currentUserCity: currentUser.currentUserCity,
+      currentUserOrderHistory: orderHistory,
+    };
+
+    localStorage.setItem("currentUser", JSON.stringify(updatedUser));
 
     navigate("/order-confirmation");
     setProductsInCart([]);
@@ -63,9 +107,13 @@ const CheckoutPage = () => {
       <div>eMail: {currentUser.currentUserEmail}</div>
 
       {currentUser.currentUserFullName &&
+      currentUser.currentUserFullName !== "" &&
       currentUser.currentUserStreetName &&
+      currentUser.currentUserStreetName !== "" &&
       currentUser.currentUserZipCode &&
-      currentUser.currentUserCity ? (
+      currentUser.currentUserZipCode !== "" &&
+      currentUser.currentUserCity &&
+      currentUser.currentUserCity !== "" ? (
         <div>
           Address:
           <p>{currentUser.currentUserFullName}</p>
