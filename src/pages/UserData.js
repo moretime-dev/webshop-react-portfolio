@@ -15,7 +15,7 @@ const UserData = () => {
   }, []);
 
   const onEditAddressButtonClickHandler = () => {
-    navigate("/edit-user-data");
+    navigate("/user-profile/edit-user-data");
   };
 
   return (

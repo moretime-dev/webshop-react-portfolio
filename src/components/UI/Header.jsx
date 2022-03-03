@@ -42,7 +42,7 @@ const Header = () => {
         {currentUserIsLoggedIn ? (
           <div className={styles.userHandling}>
             <Link
-              to="/user-data"
+              to="/user-profile"
               className={styles.userHandlingLink}
               onClick={onUserDataClickHandler}
             >

@@ -14,7 +14,8 @@ import ConfirmNewUserAdded from "./pages/ConfirmNewUserAdded";
 import CartPage from "./pages/CartPage";
 import CheckoutPage from "./pages/CheckoutPage";
 import EditUserData from "./pages/EditUserData";
-import UserData from "./pages/UserData";
+import UserProfile from "./pages/UserProfile";
+import OrderHistory from "./pages/OrderHistory";
 import OrderConfirmationPage from "./pages/OrderConfirmationPage";
 
 import "./App.css";
@@ -55,8 +56,15 @@ function App() {
                     path="sign-up-success"
                     element={<ConfirmNewUserAdded />}
                   />
-                  <Route path="/user-data" element={<UserData />} />
-                  <Route path="/edit-user-data" element={<EditUserData />} />
+                  <Route path="/user-profile" element={<UserProfile />} />
+                  <Route
+                    path="/user-profile/edit-user-data"
+                    element={<EditUserData />}
+                  />
+                  <Route
+                    path="/user-profile/order-history"
+                    element={<OrderHistory />}
+                  />
                   <Route path="login-user" element={<LoginUser />} />
                   <Route path="*" exact element={<NotFound />} />
                 </Routes>
