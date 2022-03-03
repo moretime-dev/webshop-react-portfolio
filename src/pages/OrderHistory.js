@@ -1,5 +1,3 @@
-import { logDOM } from "@testing-library/react";
-
 const OrderHistory = () => {
   const currentUser = JSON.parse(localStorage.getItem("currentUser"));
 
