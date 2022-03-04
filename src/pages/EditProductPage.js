@@ -27,6 +27,8 @@ const EditProductPage = () => {
   const [productDiscount, setProductDiscount] = useState(product[0].discount);
   const [productImage, setProductImage] = useState("");
 
+  const [productImagePath, setProductImagePath] = useState(product[0].imgPath);
+
   const [showDiscountInput, setShowDiscountInput] = useState(false);
   const [productData, setProductData] = useState({});
 
@@ -36,7 +38,7 @@ const EditProductPage = () => {
   const [validProductPrice, setValidProductPrice] = useState(false);
   const [validProductOnSale, setValidProductOnSale] = useState(false);
   const [validProductDiscount, setValidProductDiscount] = useState(false);
-  const [validFileInput, setValidFileInput] = useState(false);
+  const [validFileInput, setValidFileInput] = useState(true);
 
   const onProductNameChangeHandler = (event) => {
     setProductName(event.target.value);
@@ -114,12 +116,6 @@ const EditProductPage = () => {
       setValidProductDiscount(true);
     }
 
-    if (productImage !== "") {
-      setValidFileInput(true);
-    } else {
-      setValidFileInput(false);
-    }
-
     if (
       validProductName &&
       validProductCategory &&
@@ -158,7 +154,7 @@ const EditProductPage = () => {
     validFileInput,
   ]);
 
-  const onAddProductFormSubmitHandler = (event) => {
+  const onAddProductFormSubmitHandler = async (event) => {
     event.preventDefault();
 
     const form = event.currentTarget;
@@ -167,16 +163,41 @@ const EditProductPage = () => {
       ({ name }) => name === "imageFile"
     );
 
-    // onSubmitHandler(productData, fileInput);
+    if (fileInput.files.length === 1) {
+      const formData = new FormData();
 
-    setProductName("");
-    setProductCategory("");
-    setProductDescription("");
-    setProductPrice("");
-    setProductOnSale("no");
-    setProductDiscount(0);
+      for (const file of fileInput.files) {
+        formData.append("file", file);
+      }
 
-    form.reset();
+      formData.append("upload_preset", "webshop-react-images");
+
+      const data = await fetch(
+        "https://api.cloudinary.com/v1_1/dzdihp1nk/image/upload",
+        {
+          method: "POST",
+          body: formData,
+        }
+      ).then((response) => response.json());
+
+      console.log(data.secure_url);
+
+      if (productData.discount === "") {
+        productData.discount = 0;
+      }
+      const dataForFirebase = {
+        ...productData,
+        imgPath: data.secure_url,
+      };
+      console.log(dataForFirebase);
+    } else {
+      const dataForFirebase = {
+        ...productData,
+        imgPath: productImagePath,
+      };
+
+      console.log(dataForFirebase);
+    }
 
     // navigate("/add-product-confirm");
   };
@@ -261,6 +282,9 @@ const EditProductPage = () => {
         )}
 
         <div className={styles.formField}>
+          <p>
+            Select new image to upload or leave empty to keep the current image
+          </p>
           <label htmlFor="image">Image: </label>
           <input
             id="image"
