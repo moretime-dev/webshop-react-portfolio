@@ -2,13 +2,22 @@ import { useState, useEffect, useContext } from "react";
 
 import { useParams } from "react-router-dom";
 
+import { useNavigate } from "react-router-dom";
+
 import { ProductsContext } from "../store/products-context.js";
 
 import Button from "../components/UI/Button.jsx";
 
 import styles from "./styles/EditProductPage.module.css";
 
+import { db } from "../firebase_config";
+import { updateDoc, doc, getDocs, collection } from "firebase/firestore";
+
+const productCollection = collection(db, "products");
+
 const EditProductPage = () => {
+  const navigate = useNavigate();
+
   const params = useParams();
   const id = params.id;
 
@@ -190,6 +199,10 @@ const EditProductPage = () => {
         imgPath: data.secure_url,
       };
       console.log(dataForFirebase);
+
+      const productDoc = doc(db, "products", id);
+
+      await updateDoc(productDoc, dataForFirebase);
     } else {
       const dataForFirebase = {
         ...productData,
@@ -197,9 +210,22 @@ const EditProductPage = () => {
       };
 
       console.log(dataForFirebase);
+
+      const productDoc = doc(db, "products", id);
+
+      await updateDoc(productDoc, dataForFirebase);
     }
 
-    // navigate("/add-product-confirm");
+    const updatedCollection = await getDocs(productCollection);
+
+    const productsArray = updatedCollection.docs.map((doc) => ({
+      ...doc.data(),
+      id: doc.id,
+    }));
+
+    setProducts(productsArray);
+
+    navigate("/add-product-confirm");
   };
 
   return (

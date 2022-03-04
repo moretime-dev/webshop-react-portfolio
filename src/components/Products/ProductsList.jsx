@@ -4,6 +4,8 @@ import { ProductsContext } from "../../store/products-context.js";
 import ProductItem from "./ProductItem";
 import FilterProducts from "../UI/FilterProducts.jsx";
 
+import LoadingSpinner from "../../assets/img/loadingSpinner.gif";
+
 import styles from "./styles/ProductsList.module.css";
 
 const ProductsList = () => {
@@ -15,7 +17,11 @@ const ProductsList = () => {
       <div className={styles.productListContainerWrapper}>
         <div className={styles.productListContainer}>
           {products.length === 0 ? (
-            <h1>No Products Found</h1>
+            <img
+              src={LoadingSpinner}
+              alt="loading..."
+              className={styles.loadingSpinner}
+            />
           ) : (
             products.map((product) => {
               return <ProductItem key={product.id} product={product} />;
