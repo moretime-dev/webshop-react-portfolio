@@ -1,0 +1,18 @@
+.orderContainer {
+  width: 30vw;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin: 2em auto;
+  border-bottom: 2px solid black;
+  background-color: antiquewhite;
+}
+
+.orderHistoryProductInfo {
+  margin: 0.3em;
+}
+
+.orderHistoryTotalAmount {
+  border-top: 2px solid black;
+  background-color: rgb(233, 201, 97);
+}

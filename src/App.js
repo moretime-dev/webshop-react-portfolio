@@ -17,6 +17,7 @@ import EditUserData from "./pages/EditUserData";
 import UserProfile from "./pages/UserProfile";
 import OrderHistory from "./pages/OrderHistory";
 import OrderConfirmationPage from "./pages/OrderConfirmationPage";
+import EditProductPage from "./pages/EditProductPage";
 
 import "./App.css";
 
@@ -38,6 +39,11 @@ function App() {
                   <Route path="/" exact element={<Home />} />
                   <Route path="/products" exact element={<Products />} />
                   <Route path="/products/:id" element={<ProductDetails />} />
+                  <Route
+                    path="/products/edit-product/:id"
+                    element={<EditProductPage />}
+                  />
+
                   <Route path="/sale" element={<Sale />} />
                   <Route path="/cart" element={<CartPage />} />
                   <Route path="/checkout" element={<CheckoutPage />} />

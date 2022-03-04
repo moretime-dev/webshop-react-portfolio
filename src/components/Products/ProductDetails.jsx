@@ -114,6 +114,21 @@ const ProductDetails = () => {
                   onClick={onProductAddToCartHandler}
                 />
               </div>
+              {currentUserIsLoggedIn && currentUserRole === "admin" ? (
+                <div className={styles.adminButtonsContainer}>
+                  {" "}
+                  <Button
+                    buttonText="Edit Product"
+                    className={styles.editButton}
+                  />{" "}
+                  <Button
+                    buttonText="Delete Product"
+                    className={styles.deleteButton}
+                  />{" "}
+                </div>
+              ) : (
+                ""
+              )}
             </div>
           </div>
         );

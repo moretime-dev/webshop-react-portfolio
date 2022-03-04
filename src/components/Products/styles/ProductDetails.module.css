@@ -40,3 +40,20 @@
   margin-top: 1em;
   color: rgb(35, 35, 153);
 }
+
+.adminButtonsContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 2em;
+}
+
+.editButton {
+  margin-right: 1em;
+  background-color: rgb(72, 182, 145);
+  color: white;
+}
+
+.deleteButton {
+  background-color: rgb(238, 99, 127);
+  color: white;
+}
