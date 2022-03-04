@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { ProductsContext } from "../../store/products-context.js";
 import { CartContext } from "./../../store/cart-context";
 import { AuthContext } from "./../../store/auth-context";
@@ -22,6 +22,8 @@ const ProductDetails = () => {
   ] = useContext(CartContext);
 
   const [currentUserRole, currentUserIsLoggedIn] = useContext(AuthContext);
+
+  const navigate = useNavigate();
 
   const [products, setProducts] = useContext(ProductsContext);
   const params = useParams();
@@ -67,6 +69,10 @@ const ProductDetails = () => {
     } else {
       setLoginPrompt("Please log in to add products to your cart.");
     }
+  };
+
+  const onEditProductClickHandler = (id) => {
+    navigate(`/products/edit-product/${id}`);
   };
 
   return (
@@ -120,6 +126,7 @@ const ProductDetails = () => {
                   <Button
                     buttonText="Edit Product"
                     className={styles.editButton}
+                    onClick={() => onEditProductClickHandler(p.id)}
                   />{" "}
                   <Button
                     buttonText="Delete Product"
