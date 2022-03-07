@@ -38,6 +38,16 @@ function App() {
                 <Routes>
                   <Route path="/" exact element={<Home />} />
                   <Route path="/products" exact element={<Products />} />
+                  <Route
+                    path="/products/:category"
+                    exact
+                    element={<Products />}
+                  />
+                  <Route
+                    path="/products/:category/:filter"
+                    exact
+                    element={<Products />}
+                  />
                   <Route path="/products/:id" element={<ProductDetails />} />
                   <Route
                     path="/products/edit-product/:id"

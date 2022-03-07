@@ -1,4 +1,8 @@
 import { useContext, useState } from "react";
+import { useParams } from "react-router-dom";
+
+import { Link } from "react-router-dom";
+
 import { ProductsContext } from "../../store/products-context.js";
 
 import styles from "./styles/FilterProducts.module.css";
@@ -6,6 +10,13 @@ import styles from "./styles/FilterProducts.module.css";
 const FilterProducts = () => {
   const [products, setProducts, filteredProducts, setFilteredProducts] =
     useContext(ProductsContext);
+
+  const params = useParams();
+
+  const categoryFromParams = params.category || "all";
+  const filterFromParams = params.filter || "none";
+
+  console.log(categoryFromParams, filterFromParams);
 
   const filterCategories = [
     "all",
@@ -16,16 +27,16 @@ const FilterProducts = () => {
     "travel",
   ];
 
-  const onFilterCategoryHandler = (category) => {
+  const onFilterCategoryHandler = (currentCategory) => {
     const productsToFilter = [...products];
 
     let currentFilteredProducts = [];
 
-    if (category === "all") {
+    if (currentCategory === "all") {
       currentFilteredProducts = products;
     } else {
       currentFilteredProducts = productsToFilter.filter(
-        (product) => product.category === category
+        (product) => product.category === currentCategory
       );
     }
 
@@ -140,52 +151,65 @@ const FilterProducts = () => {
     <div className={styles.filterContainer}>
       {filterCategories.map((category) => {
         return (
-          <span
-            key={category}
-            className={styles.category}
-            onClick={() => onFilterCategoryHandler(category)}
-          >
-            {category}
-          </span>
+          <Link to={`/products/${category}`} key={category}>
+            <span
+              className={styles.category}
+              onClick={() => onFilterCategoryHandler(category)}
+            >
+              {category}
+            </span>
+          </Link>
         );
       })}
       <div>
-        <span
-          className={styles.subFilter}
-          onClick={onLatestProductFilterHandler}
-        >
-          Latest |
-        </span>
-        <span
-          className={styles.subFilter}
-          onClick={onOldestProductFilterHandler}
-        >
-          Oldest |
-        </span>
-        <span
-          className={styles.subFilter}
-          onClick={onLeastExpensiveProductFilterHandler}
-        >
-          Least Expensive |
-        </span>
-        <span
-          className={styles.subFilter}
-          onClick={onMostExpensiveProductFilterHandler}
-        >
-          Most Expensive |
-        </span>
-        <span
-          className={styles.subFilter}
-          onClick={onAscendingAlphaBeticProductFilterHandler}
-        >
-          [A-Z] |
-        </span>
-        <span
-          className={styles.subFilter}
-          onClick={onDescendingAlphabeticProductFilterHandler}
-        >
-          [Z-A]
-        </span>
+        <Link to={`/products/${categoryFromParams}/latest`}>
+          <span
+            className={styles.subFilter}
+            onClick={onLatestProductFilterHandler}
+          >
+            Latest |
+          </span>
+        </Link>
+        <Link to={`/products/${categoryFromParams}/oldest`}>
+          <span
+            className={styles.subFilter}
+            onClick={onOldestProductFilterHandler}
+          >
+            Oldest |
+          </span>
+        </Link>
+        <Link to={`/products/${categoryFromParams}/least-expensive`}>
+          <span
+            className={styles.subFilter}
+            onClick={onLeastExpensiveProductFilterHandler}
+          >
+            Least Expensive |
+          </span>
+        </Link>
+        <Link to={`/products/${categoryFromParams}/most-expensive`}>
+          <span
+            className={styles.subFilter}
+            onClick={onMostExpensiveProductFilterHandler}
+          >
+            Most Expensive |
+          </span>
+        </Link>
+        <Link to={`/products/${categoryFromParams}/names-asc`}>
+          <span
+            className={styles.subFilter}
+            onClick={onAscendingAlphaBeticProductFilterHandler}
+          >
+            [A-Z] |
+          </span>
+        </Link>
+        <Link to={`/products/${categoryFromParams}/names-desc`}>
+          <span
+            className={styles.subFilter}
+            onClick={onDescendingAlphabeticProductFilterHandler}
+          >
+            [Z-A]
+          </span>
+        </Link>
       </div>
     </div>
   );
