@@ -32,6 +32,7 @@ const AddProduct = () => {
     }
 
     const dataForFirebase = {
+      date: Date.now(),
       name: productData.name,
       category: productData.category,
       description: productData.description,
