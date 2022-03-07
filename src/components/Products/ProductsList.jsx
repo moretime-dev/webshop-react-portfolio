@@ -9,7 +9,7 @@ import LoadingSpinner from "../../assets/img/loadingSpinner.gif";
 import styles from "./styles/ProductsList.module.css";
 
 const ProductsList = () => {
-  const [products] = useContext(ProductsContext);
+  const [products, setProducts, filteredProducts] = useContext(ProductsContext);
 
   return (
     <div>
@@ -22,8 +22,12 @@ const ProductsList = () => {
               alt="loading..."
               className={styles.loadingSpinner}
             />
-          ) : (
+          ) : filteredProducts.length === 0 ? (
             products.map((product) => {
+              return <ProductItem key={product.id} product={product} />;
+            })
+          ) : (
+            filteredProducts.map((product) => {
               return <ProductItem key={product.id} product={product} />;
             })
           )}

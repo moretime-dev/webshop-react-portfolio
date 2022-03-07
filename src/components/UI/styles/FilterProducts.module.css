@@ -12,3 +12,12 @@
 .category:hover {
   color: rgb(230, 169, 39);
 }
+
+.subFilter {
+  cursor: pointer;
+  margin-right: 0.5em;
+}
+
+.subFilter:hover {
+  color: rgb(230, 169, 39);
+}

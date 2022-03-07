@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { ProductsContext } from "../../store/products-context.js";
 
 import { db } from "../../firebase_config";
@@ -8,7 +8,8 @@ import styles from "./styles/FilterProducts.module.css";
 
 const productsCollection = collection(db, "products");
 const FilterProducts = () => {
-  const [products, setProducts] = useContext(ProductsContext);
+  const [products, setProducts, filteredProducts, setFilteredProducts] =
+    useContext(ProductsContext);
 
   const filterCategories = [
     "all",
@@ -19,25 +20,131 @@ const FilterProducts = () => {
     "travel",
   ];
 
-  const onFilterCategoryHandler = async (category) => {
-    const productsToFilter = await getDocs(productsCollection);
+  const onFilterCategoryHandler = (category) => {
+    // const productsToFilter = await getDocs(productsCollection);
 
-    const productsArray = productsToFilter.docs.map((doc) => ({
-      ...doc.data(),
-      id: doc.id,
-    }));
+    // const productsArray = productsToFilter.docs.map((doc) => ({
+    //   ...doc.data(),
+    //   id: doc.id,
+    // }));
+
+    const productsToFilter = [...products];
 
     let filteredProducts = [];
 
     if (category === "all") {
-      filteredProducts = productsArray;
+      filteredProducts = products;
     } else {
-      filteredProducts = productsArray.filter(
+      filteredProducts = productsToFilter.filter(
         (product) => product.category === category
       );
     }
 
-    setProducts(filteredProducts);
+    setFilteredProducts(filteredProducts);
+  };
+
+  const onLatestProductFilterHandler = () => {
+    let productsToSort = [];
+
+    if (filteredProducts.length === 0) {
+      productsToSort = [...products];
+    } else {
+      productsToSort = [...filteredProducts];
+    }
+
+    const sortedProducts = productsToSort.sort((a, b) => b.date - a.date);
+
+    setFilteredProducts(sortedProducts);
+  };
+
+  const onOldestProductFilterHandler = () => {
+    let productsToSort = [];
+
+    if (filteredProducts.length === 0) {
+      productsToSort = [...products];
+    } else {
+      productsToSort = [...filteredProducts];
+    }
+
+    const sortedProducts = productsToSort.sort((a, b) => a.date - b.date);
+
+    setFilteredProducts(sortedProducts);
+  };
+
+  const onLeastExpensiveProductFilterHandler = () => {
+    let productsToSort = [];
+
+    if (filteredProducts.length === 0) {
+      productsToSort = [...products];
+    } else {
+      productsToSort = [...filteredProducts];
+    }
+
+    const sortedProducts = productsToSort.sort((a, b) => a.price - b.price);
+
+    setFilteredProducts(sortedProducts);
+  };
+
+  const onMostExpensiveProductFilterHandler = () => {
+    let productsToSort = [];
+
+    if (filteredProducts.length === 0) {
+      productsToSort = [...products];
+    } else {
+      productsToSort = [...filteredProducts];
+    }
+
+    const sortedProducts = productsToSort.sort((a, b) => b.price - a.price);
+
+    setFilteredProducts(sortedProducts);
+  };
+
+  const onAscendingAlphaBeticProductFilterHandler = () => {
+    let productsToSort = [];
+
+    if (filteredProducts.length === 0) {
+      productsToSort = [...products];
+    } else {
+      productsToSort = [...filteredProducts];
+    }
+
+    const sortedProducts = productsToSort.sort((a, b) => {
+      let x = a.name.toLowerCase();
+      let y = b.name.toLowerCase();
+      if (x < y) {
+        return -1;
+      }
+      if (x > y) {
+        return 1;
+      }
+      return 0;
+    });
+
+    setFilteredProducts(sortedProducts);
+  };
+
+  const onDescendingAlphabeticProductFilterHandler = () => {
+    let productsToSort = [];
+
+    if (filteredProducts.length === 0) {
+      productsToSort = [...products];
+    } else {
+      productsToSort = [...filteredProducts];
+    }
+
+    const sortedProducts = productsToSort.sort((a, b) => {
+      let x = a.name.toLowerCase();
+      let y = b.name.toLowerCase();
+      if (x > y) {
+        return -1;
+      }
+      if (x < y) {
+        return 1;
+      }
+      return 0;
+    });
+
+    setFilteredProducts(sortedProducts);
   };
 
   return (
@@ -53,6 +160,44 @@ const FilterProducts = () => {
           </span>
         );
       })}
+      <div>
+        <span
+          className={styles.subFilter}
+          onClick={onLatestProductFilterHandler}
+        >
+          Latest |
+        </span>
+        <span
+          className={styles.subFilter}
+          onClick={onOldestProductFilterHandler}
+        >
+          Oldest |
+        </span>
+        <span
+          className={styles.subFilter}
+          onClick={onLeastExpensiveProductFilterHandler}
+        >
+          Least Expensive |
+        </span>
+        <span
+          className={styles.subFilter}
+          onClick={onMostExpensiveProductFilterHandler}
+        >
+          Most Expensive |
+        </span>
+        <span
+          className={styles.subFilter}
+          onClick={onAscendingAlphaBeticProductFilterHandler}
+        >
+          [A-Z] |
+        </span>
+        <span
+          className={styles.subFilter}
+          onClick={onDescendingAlphabeticProductFilterHandler}
+        >
+          [Z-A]
+        </span>
+      </div>
     </div>
   );
 };

@@ -8,6 +8,7 @@ export const ProductsContext = React.createContext();
 const productsCollection = collection(db, "products");
 export const ProductsProvider = ({ children }) => {
   const [products, setProducts] = useState([]);
+  const [filteredProducts, setFilteredProducts] = useState([]);
 
   useEffect(() => {
     const fetchProductsFromFireBase = async () => {
@@ -25,7 +26,9 @@ export const ProductsProvider = ({ children }) => {
   }, []);
 
   return (
-    <ProductsContext.Provider value={[products, setProducts]}>
+    <ProductsContext.Provider
+      value={[products, setProducts, filteredProducts, setFilteredProducts]}
+    >
       {children}
     </ProductsContext.Provider>
   );
