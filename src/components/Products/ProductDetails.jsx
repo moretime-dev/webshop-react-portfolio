@@ -7,6 +7,9 @@ import { AuthContext } from "./../../store/auth-context";
 import Card from "../UI/Card";
 import Button from "../UI/Button";
 
+import { db } from "../../firebase_config";
+import { doc, deleteDoc } from "firebase/firestore";
+
 import styles from "./styles/ProductDetails.module.css";
 
 const ProductDetails = () => {
@@ -75,6 +78,17 @@ const ProductDetails = () => {
     navigate(`/products/edit-product/${id}`);
   };
 
+  const onDeleteProductClickHandler = async (id) => {
+    const updatedProducts = products.filter((product) => product.id !== id);
+
+    const productToDelete = doc(db, "products", id);
+    await deleteDoc(productToDelete);
+
+    setProducts(updatedProducts);
+
+    navigate("/products");
+  };
+
   return (
     <Card className={styles.productDetailsCard}>
       {product.map((p) => {
@@ -131,6 +145,7 @@ const ProductDetails = () => {
                   <Button
                     buttonText="Delete Product"
                     className={styles.deleteButton}
+                    onClick={() => onDeleteProductClickHandler(p.id)}
                   />{" "}
                 </div>
               ) : (

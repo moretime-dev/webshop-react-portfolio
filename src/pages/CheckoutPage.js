@@ -54,7 +54,7 @@ const CheckoutPage = () => {
 
   const onBuyNowButtonClickHandler = async () => {
     const newOrder = {
-      date: new Date(),
+      date: new Date(Date.now()).toUTCString(),
       products: [...productsInCart],
       totalAmount: totalPrice,
       paymentMethod: paymentMethod,

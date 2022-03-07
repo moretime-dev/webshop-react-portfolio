@@ -163,7 +163,7 @@ const EditProductPage = () => {
     validFileInput,
   ]);
 
-  const onAddProductFormSubmitHandler = async (event) => {
+  const onEditProductFormSubmitHandler = async (event) => {
     event.preventDefault();
 
     const form = event.currentTarget;
@@ -231,7 +231,7 @@ const EditProductPage = () => {
   return (
     <div className={styles.formContainer}>
       <h1 className={styles.h1}>Edit Product:</h1>
-      <form className={styles.form} onSubmit={onAddProductFormSubmitHandler}>
+      <form className={styles.form} onSubmit={onEditProductFormSubmitHandler}>
         <div className={styles.formField}>
           <label htmlFor="name">Name: </label>
           <input
