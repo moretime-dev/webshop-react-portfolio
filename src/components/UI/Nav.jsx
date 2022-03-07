@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 
 import { AuthContext } from "../../store/auth-context";
+import { ProductsContext } from "../../store/products-context";
 
 import { AiOutlineHome, AiOutlineFileAdd } from "react-icons/ai";
 import { FiSmile, FiPercent } from "react-icons/fi";
@@ -10,11 +11,17 @@ import styles from "./styles/Nav.module.css";
 
 const Nav = () => {
   const [currentUserRole, currentUserIsLoggedIn] = useContext(AuthContext);
+  const [products, setProducts, filteredProducts, setFilteredProducts] =
+    useContext(ProductsContext);
 
   // console.log(
   //   "Is logged in: " + currentUserIsLoggedIn,
   //   "Role: " + currentUserRole
   // );
+
+  const onProductsLinkClickHandler = () => {
+    setFilteredProducts([]);
+  };
 
   return (
     <ul className={styles.navContainer}>
@@ -33,7 +40,13 @@ const Nav = () => {
             {" "}
             <FiSmile />
           </span>{" "}
-          <span className={styles.linkName}> PRODUCTS</span>
+          <span
+            className={styles.linkName}
+            onClick={onProductsLinkClickHandler}
+          >
+            {" "}
+            PRODUCTS
+          </span>
         </NavLink>
       </li>
       <li>

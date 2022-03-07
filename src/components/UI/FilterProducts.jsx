@@ -1,12 +1,8 @@
 import { useContext, useState } from "react";
 import { ProductsContext } from "../../store/products-context.js";
 
-import { db } from "../../firebase_config";
-import { collection, getDocs } from "firebase/firestore";
-
 import styles from "./styles/FilterProducts.module.css";
 
-const productsCollection = collection(db, "products");
 const FilterProducts = () => {
   const [products, setProducts, filteredProducts, setFilteredProducts] =
     useContext(ProductsContext);
@@ -21,26 +17,19 @@ const FilterProducts = () => {
   ];
 
   const onFilterCategoryHandler = (category) => {
-    // const productsToFilter = await getDocs(productsCollection);
-
-    // const productsArray = productsToFilter.docs.map((doc) => ({
-    //   ...doc.data(),
-    //   id: doc.id,
-    // }));
-
     const productsToFilter = [...products];
 
-    let filteredProducts = [];
+    let currentFilteredProducts = [];
 
     if (category === "all") {
-      filteredProducts = products;
+      currentFilteredProducts = products;
     } else {
-      filteredProducts = productsToFilter.filter(
+      currentFilteredProducts = productsToFilter.filter(
         (product) => product.category === category
       );
     }
 
-    setFilteredProducts(filteredProducts);
+    setFilteredProducts(currentFilteredProducts);
   };
 
   const onLatestProductFilterHandler = () => {
