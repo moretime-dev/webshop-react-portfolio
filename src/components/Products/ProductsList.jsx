@@ -3,6 +3,7 @@ import { ProductsContext } from "../../store/products-context.js";
 
 import ProductItem from "./ProductItem";
 import FilterProducts from "../UI/FilterProducts.jsx";
+import Pagination from "../UI/Pagination.jsx";
 
 import LoadingSpinner from "../../assets/img/loadingSpinner.gif";
 
@@ -33,6 +34,7 @@ const ProductsList = () => {
           )}
         </div>
       </div>
+      <Pagination />
     </div>
   );
 };
