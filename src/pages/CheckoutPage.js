@@ -32,25 +32,25 @@ const CheckoutPage = () => {
     setPaymentMethod(event.target.value);
   };
 
-  const newOrder = {
-    date: new Date(),
-    products: [...productsInCart],
-    totalAmount: totalPrice,
-    paymentMethod: paymentMethod,
-  };
+  // const newOrder = {
+  //   date: new Date(),
+  //   products: [...productsInCart],
+  //   totalAmount: totalPrice,
+  //   paymentMethod: paymentMethod,
+  // };
 
-  const currentOrderHistory = {
-    ...currentUser.currentUserOrderHistory,
-    newOrder,
-  };
+  // const currentOrderHistory = {
+  //   ...currentUser.currentUserOrderHistory,
+  //   newOrder,
+  // };
 
-  const orderHistory = {
-    orderHistory: [],
-  };
+  // const orderHistory = {
+  //   orderHistory: [],
+  // };
 
-  for (let order in currentOrderHistory) {
-    orderHistory.orderHistory.push(currentOrderHistory[order]);
-  }
+  // for (let order in currentOrderHistory) {
+  //   orderHistory.orderHistory.push(currentOrderHistory[order]);
+  // }
 
   const onBuyNowButtonClickHandler = async () => {
     const newOrder = {
@@ -63,14 +63,14 @@ const CheckoutPage = () => {
     const currentOrderHistory = [];
 
     for (let thing in currentUser.currentUserOrderHistory) {
-      for (let order in currentUser.currentUserOrderHistory[thing]) {
-        currentOrderHistory.push(
-          currentUser.currentUserOrderHistory[thing][order]
-        );
-      }
+      // for (let order in currentUser.currentUserOrderHistory[thing]) {
+      currentOrderHistory.push(currentUser.currentUserOrderHistory[thing]);
+      // }
     }
 
     currentOrderHistory.push(newOrder);
+
+    console.log(currentOrderHistory);
 
     const orderHistory = {
       orderHistory: [],
@@ -92,7 +92,7 @@ const CheckoutPage = () => {
       currentUserStreetName: currentUser.currentUserStreetName,
       currentUserZipCode: currentUser.currentUserZipCode,
       currentUserCity: currentUser.currentUserCity,
-      currentUserOrderHistory: orderHistory,
+      currentUserOrderHistory: currentOrderHistory,
     };
 
     localStorage.setItem("currentUser", JSON.stringify(updatedUser));

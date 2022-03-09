@@ -42,7 +42,7 @@ const FilterProducts = () => {
 
     setProductsToFilter(currentProductsToFilter);
 
-    console.log(currentProductsToFilter);
+    // console.log(currentProductsToFilter);
   }, [products, filteredProducts, productsOnSale]);
 
   const onFilterCategoryHandler = (currentCategory) => {

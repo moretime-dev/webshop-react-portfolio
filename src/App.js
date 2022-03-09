@@ -19,6 +19,8 @@ import OrderHistory from "./pages/OrderHistory";
 import OrderConfirmationPage from "./pages/OrderConfirmationPage";
 import EditProductPage from "./pages/EditProductPage";
 
+import RequireAuth from "./utils/RequireAuth";
+
 import "./App.css";
 
 import { ProductsProvider } from "./store/products-context";
@@ -53,12 +55,6 @@ function App() {
                     exact
                     element={<Products />}
                   />
-                  <Route
-                    path="/products/edit-product/:id"
-                    exact
-                    element={<EditProductPage />}
-                  />
-
                   <Route path="/sale" element={<Sale />} />
                   <Route path="/cart" element={<CartPage />} />
                   <Route path="/checkout" element={<CheckoutPage />} />
@@ -66,12 +62,20 @@ function App() {
                     path="/order-confirmation"
                     element={<OrderConfirmationPage />}
                   />
-                  <Route path="/add-product" exact element={<AddProduct />} />
-                  <Route
-                    path="/add-product-confirm"
-                    exact
-                    element={<ConfirmNewProductUpload />}
-                  />
+                  [// Only Admin allowed]
+                  <Route element={<RequireAuth allowedRoles={"admin"} />}>
+                    <Route path="/add-product" exact element={<AddProduct />} />
+                    <Route
+                      path="/products/edit-product/:id"
+                      exact
+                      element={<EditProductPage />}
+                    />
+                    <Route
+                      path="/add-product-confirm"
+                      exact
+                      element={<ConfirmNewProductUpload />}
+                    />
+                  </Route>
                   <Route path="add-new-user" element={<AddNewUser />} />
                   <Route
                     path="sign-up-success"
@@ -88,6 +92,7 @@ function App() {
                   />
                   <Route path="login-user" element={<LoginUser />} />
                   <Route path="*" exact element={<NotFound />} />
+                  <Route path="/not-found" exact element={<NotFound />} />
                 </Routes>
               </BrowserRouter>
             </div>
