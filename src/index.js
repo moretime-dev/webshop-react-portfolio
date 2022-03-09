@@ -3,9 +3,24 @@ import ReactDOM from "react-dom";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 
+import { ProductsProvider } from "./store/products-context";
+import { UsersProvider } from "./store/users-context";
+import { AuthProvider } from "./store/auth-context";
+import { CartProvider } from "./store/cart-context";
+
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <>
+      <ProductsProvider>
+        <UsersProvider>
+          <AuthProvider>
+            <CartProvider>
+              <App />{" "}
+            </CartProvider>
+          </AuthProvider>
+        </UsersProvider>
+      </ProductsProvider>
+    </>
   </React.StrictMode>,
   document.getElementById("root")
 );

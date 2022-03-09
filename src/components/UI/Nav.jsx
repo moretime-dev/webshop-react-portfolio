@@ -26,7 +26,7 @@ const Nav = () => {
   // );
 
   const onProductsLinkClickHandler = () => {
-    setFilteredProducts([]);
+    setFilteredProducts(products.slice(0, 9));
     setProductsOnSale(false);
   };
 
@@ -42,7 +42,7 @@ const Nav = () => {
         </NavLink>
       </li>
       <li>
-        <NavLink to="/products" className={styles.navLink}>
+        <NavLink to="/products/pages/1" className={styles.navLink}>
           <span className={styles.symbol}>
             {" "}
             <FiSmile />

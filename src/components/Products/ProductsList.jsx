@@ -10,7 +10,18 @@ import LoadingSpinner from "../../assets/img/loadingSpinner.gif";
 import styles from "./styles/ProductsList.module.css";
 
 const ProductsList = () => {
-  const [products, setProducts, filteredProducts] = useContext(ProductsContext);
+  const [
+    products,
+    setProducts,
+    filteredProducts,
+    setFilteredProducts,
+    productsOnSale,
+    setProductsOnSale,
+  ] = useContext(ProductsContext);
+
+  const onSetPagesHandler = (pages) => {
+    setFilteredProducts(pages);
+  };
 
   return (
     <div>
@@ -34,7 +45,7 @@ const ProductsList = () => {
           )}
         </div>
       </div>
-      <Pagination />
+      <Pagination onSetPages={onSetPagesHandler} />
     </div>
   );
 };
