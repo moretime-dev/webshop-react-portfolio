@@ -11,8 +11,14 @@ import styles from "./styles/Nav.module.css";
 
 const Nav = () => {
   const [currentUserRole, currentUserIsLoggedIn] = useContext(AuthContext);
-  const [products, setProducts, filteredProducts, setFilteredProducts] =
-    useContext(ProductsContext);
+  const [
+    products,
+    setProducts,
+    filteredProducts,
+    setFilteredProducts,
+    productsOnSale,
+    setProductsOnSale,
+  ] = useContext(ProductsContext);
 
   // console.log(
   //   "Is logged in: " + currentUserIsLoggedIn,
@@ -21,6 +27,7 @@ const Nav = () => {
 
   const onProductsLinkClickHandler = () => {
     setFilteredProducts([]);
+    setProductsOnSale(false);
   };
 
   return (

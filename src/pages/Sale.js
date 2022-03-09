@@ -4,18 +4,24 @@ import { ProductsContext } from "../store/products-context";
 import ProductsList from "../components/Products/ProductsList";
 
 const Sale = () => {
-  const [products, setProducts, filteredProducts, setFilteredProducts] =
-    useContext(ProductsContext);
+  const [
+    products,
+    setProducts,
+    filteredProducts,
+    setFilteredProducts,
+    productsOnSale,
+    setProductsOnSale,
+  ] = useContext(ProductsContext);
 
   useEffect(() => {
-    const productsCopy = [...products];
-
-    const productsOnSale = productsCopy.filter(
+    const currentProductsOnSale = products.filter(
       (product) => product.onSale === "yes"
     );
 
-    setFilteredProducts(productsOnSale);
-  }, [products, setFilteredProducts]);
+    setProductsOnSale(true);
+
+    setFilteredProducts(currentProductsOnSale);
+  }, [products, setFilteredProducts, setProductsOnSale]);
 
   return <ProductsList />;
 };
