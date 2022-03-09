@@ -39,7 +39,7 @@ const Header = () => {
         </Link>
         <Nav />
         <CartButton />
-        {currentUserIsLoggedIn ? (
+        {currentUserIsLoggedIn && currentUserRole === "user" ? (
           <div className={styles.userHandling}>
             <Link
               to="/user-profile"
@@ -56,6 +56,14 @@ const Header = () => {
               Logout
             </Link>
           </div>
+        ) : currentUserIsLoggedIn && currentUserRole === "admin" ? (
+          <Link
+            to="/"
+            className={styles.userHandlingLink}
+            onClick={onLogoutHandler}
+          >
+            Logout
+          </Link>
         ) : (
           <div className={styles.userHandling}>
             <Link to="/add-new-user" className={styles.userHandlingLink}>

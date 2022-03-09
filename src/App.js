@@ -81,15 +81,18 @@ function App() {
                     path="sign-up-success"
                     element={<ConfirmNewUserAdded />}
                   />
-                  <Route path="/user-profile" element={<UserProfile />} />
-                  <Route
-                    path="/user-profile/edit-user-data"
-                    element={<EditUserData />}
-                  />
-                  <Route
-                    path="/user-profile/order-history"
-                    element={<OrderHistory />}
-                  />
+                  [// Only User allowed]
+                  <Route element={<RequireAuth allowedRoles={"user"} />}>
+                    <Route path="/user-profile" element={<UserProfile />} />
+                    <Route
+                      path="/user-profile/edit-user-data"
+                      element={<EditUserData />}
+                    />
+                    <Route
+                      path="/user-profile/order-history"
+                      element={<OrderHistory />}
+                    />
+                  </Route>
                   <Route path="login-user" element={<LoginUser />} />
                   <Route path="*" exact element={<NotFound />} />
                   <Route path="/not-found" exact element={<NotFound />} />
