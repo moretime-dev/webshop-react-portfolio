@@ -18,6 +18,8 @@ const Nav = () => {
     setFilteredProducts,
     productsOnSale,
     setProductsOnSale,
+    productsPerPage,
+    setProductsPerPage,
   ] = useContext(ProductsContext);
 
   // console.log(
@@ -27,6 +29,7 @@ const Nav = () => {
 
   const onProductsLinkClickHandler = () => {
     setFilteredProducts(products.slice(0, 9));
+    setProductsPerPage([]);
     setProductsOnSale(false);
   };
 

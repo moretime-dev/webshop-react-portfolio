@@ -10,6 +10,7 @@ export const ProductsProvider = ({ children }) => {
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [productsOnSale, setProductsOnSale] = useState(false);
+  const [productsPerPage, setProductsPerPage] = useState([]);
 
   useEffect(() => {
     const fetchProductsFromFireBase = async () => {
@@ -35,6 +36,8 @@ export const ProductsProvider = ({ children }) => {
         setFilteredProducts,
         productsOnSale,
         setProductsOnSale,
+        productsPerPage,
+        setProductsPerPage,
       ]}
     >
       {children}

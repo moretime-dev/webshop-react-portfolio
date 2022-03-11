@@ -7,7 +7,7 @@ import { ProductsContext } from "../../store/products-context.js";
 
 import styles from "./styles/FilterProducts.module.css";
 
-const FilterProducts = () => {
+const FilterProducts = ({ onSetCurrentProducts }) => {
   const [
     products,
     setProducts,
@@ -15,6 +15,8 @@ const FilterProducts = () => {
     setFilteredProducts,
     productsOnSale,
     setProductsOnSale,
+    productsPerPage,
+    setProductsPerPage,
   ] = useContext(ProductsContext);
 
   const [productsToFilter, setProductsToFilter] = useState([]);
@@ -50,13 +52,15 @@ const FilterProducts = () => {
 
     if (currentCategory === "all") {
       currentFilteredProducts = products;
+      setProductsPerPage([]);
+      setFilteredProducts(products.slice(0, 9));
     } else {
       currentFilteredProducts = productsToFilter.filter(
         (product) => product.category === currentCategory
       );
+      setProductsPerPage(currentFilteredProducts);
+      setFilteredProducts(currentFilteredProducts);
     }
-
-    setFilteredProducts(currentFilteredProducts);
   };
 
   const onLatestProductFilterHandler = () => {
@@ -179,54 +183,42 @@ const FilterProducts = () => {
         );
       })}
       <div>
-        <Link to={`/products/category/${categoryFromParams}/latest`}>
-          <span
-            className={styles.subFilter}
-            onClick={onLatestProductFilterHandler}
-          >
-            Latest |
-          </span>
-        </Link>
-        <Link to={`/products/category/${categoryFromParams}/oldest`}>
-          <span
-            className={styles.subFilter}
-            onClick={onOldestProductFilterHandler}
-          >
-            Oldest |
-          </span>
-        </Link>
-        <Link to={`/products/category/${categoryFromParams}/least-expensive`}>
-          <span
-            className={styles.subFilter}
-            onClick={onLeastExpensiveProductFilterHandler}
-          >
-            Least Expensive |
-          </span>
-        </Link>
-        <Link to={`/products/category/${categoryFromParams}/most-expensive`}>
-          <span
-            className={styles.subFilter}
-            onClick={onMostExpensiveProductFilterHandler}
-          >
-            Most Expensive |
-          </span>
-        </Link>
-        <Link to={`/products/category/${categoryFromParams}/names-asc`}>
-          <span
-            className={styles.subFilter}
-            onClick={onAscendingAlphaBeticProductFilterHandler}
-          >
-            [A-Z] |
-          </span>
-        </Link>
-        <Link to={`/products/category/${categoryFromParams}/names-desc`}>
-          <span
-            className={styles.subFilter}
-            onClick={onDescendingAlphabeticProductFilterHandler}
-          >
-            [Z-A]
-          </span>
-        </Link>
+        <span
+          className={styles.subFilter}
+          onClick={onLatestProductFilterHandler}
+        >
+          Latest |
+        </span>
+        <span
+          className={styles.subFilter}
+          onClick={onOldestProductFilterHandler}
+        >
+          Oldest |
+        </span>
+        <span
+          className={styles.subFilter}
+          onClick={onLeastExpensiveProductFilterHandler}
+        >
+          Least Expensive |
+        </span>
+        <span
+          className={styles.subFilter}
+          onClick={onMostExpensiveProductFilterHandler}
+        >
+          Most Expensive |
+        </span>
+        <span
+          className={styles.subFilter}
+          onClick={onAscendingAlphaBeticProductFilterHandler}
+        >
+          [A-Z] |
+        </span>
+        <span
+          className={styles.subFilter}
+          onClick={onDescendingAlphabeticProductFilterHandler}
+        >
+          [Z-A]
+        </span>
       </div>
     </div>
   );

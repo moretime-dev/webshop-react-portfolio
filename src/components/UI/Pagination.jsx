@@ -7,7 +7,7 @@ import Button from "../UI/Button";
 
 import styles from "./styles/Pagination.module.css";
 
-const Pagination = (props) => {
+const Pagination = ({ onSetCurrentProducts }) => {
   const [
     products,
     setProducts,
@@ -15,12 +15,12 @@ const Pagination = (props) => {
     setFilteredProducts,
     productsOnSale,
     setProductsOnSale,
+    productsPerPage,
+    setProductsPerPage,
   ] = useContext(ProductsContext);
 
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(9);
-
-  const [currentItems, setCurrentItems] = useState([]);
 
   const [pageNumberLimit] = useState(3);
   const [maxPageNumberLimit, setMaxPageNumberLimit] = useState(3);
@@ -28,20 +28,32 @@ const Pagination = (props) => {
 
   const pages = [];
 
-  for (let i = 1; i <= Math.ceil(products.length / itemsPerPage); i++) {
-    pages.push(i);
+  console.log(productsPerPage);
+
+  if (productsPerPage.length === 0) {
+    for (let i = 1; i <= Math.ceil(products.length / itemsPerPage); i++) {
+      pages.push(i);
+    }
+  } else {
+    for (
+      let i = 1;
+      i <= Math.ceil(filteredProducts.length / itemsPerPage);
+      i++
+    ) {
+      pages.push(i);
+    }
   }
 
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
 
   useEffect(() => {
-    setCurrentItems(products.slice(indexOfFirstItem, indexOfLastItem));
-  }, [products, indexOfFirstItem, indexOfLastItem]);
+    //  setCurrentItems(products.slice(indexOfFirstItem, indexOfLastItem));
+    onSetCurrentProducts(products.slice(indexOfFirstItem, indexOfLastItem));
+  }, [indexOfFirstItem, indexOfLastItem, products, onSetCurrentProducts]);
 
-  const onHandlePageSelect = (event) => {
-    setCurrentPage(Number(event.target.id));
-    props.onSetPages(currentItems);
+  const onHandlePageSelect = (page) => {
+    setCurrentPage(page);
   };
 
   const onPrevPageHandler = () => {
@@ -71,9 +83,8 @@ const Pagination = (props) => {
       return (
         <Link to={`/products/pages/${page}`} key={page}>
           <Button
-            id={page}
-            onClick={onHandlePageSelect}
-            // className={currentPage === page && styles.active}
+            onClick={() => onHandlePageSelect(page)}
+            className={currentPage === page && styles.active}
           >
             {page}
           </Button>
@@ -83,10 +94,22 @@ const Pagination = (props) => {
   });
 
   return (
-    <div>
-      <Button buttonText="PREV" onClick={onPrevPageHandler} />
+    <div className={styles.paginationContainer}>
+      <Link
+        to={`/products/pages/${
+          currentPage - 1 === 0 ? currentPage : currentPage - 1
+        }`}
+      >
+        <Button buttonText="PREV" onClick={onPrevPageHandler} />
+      </Link>
       {renderPageNumbers}
-      <Button buttonText="NEXT" onClick={onNextPageHandler} />
+      <Link
+        to={`/products/pages/${
+          currentPage + 1 > pages.length ? currentPage : currentPage + 1
+        }`}
+      >
+        <Button buttonText="NEXT" onClick={onNextPageHandler} />
+      </Link>
     </div>
   );
 };

@@ -1,0 +1,10 @@
+.active {
+  background-color: green;
+  color: white;
+}
+
+.paginationContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 2em;
+}

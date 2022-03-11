@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useCallback } from "react";
 import { ProductsContext } from "../../store/products-context.js";
 
 import ProductItem from "./ProductItem";
@@ -17,15 +17,21 @@ const ProductsList = () => {
     setFilteredProducts,
     productsOnSale,
     setProductsOnSale,
+    productsPerPage,
+    setProductsPerPage,
   ] = useContext(ProductsContext);
 
-  const onSetPagesHandler = (pages) => {
-    setFilteredProducts(pages);
-  };
+  const onSetCurrentProductsHandler = useCallback(
+    (currentProducts) => {
+      setFilteredProducts(currentProducts);
+    },
+    [setFilteredProducts]
+  );
 
   return (
     <div>
-      <FilterProducts />
+      <FilterProducts onSetCurrentProducts={onSetCurrentProductsHandler} />
+      <Pagination onSetCurrentProducts={onSetCurrentProductsHandler} />
       <div className={styles.productListContainerWrapper}>
         <div className={styles.productListContainer}>
           {products.length === 0 ? (
@@ -45,7 +51,6 @@ const ProductsList = () => {
           )}
         </div>
       </div>
-      <Pagination onSetPages={onSetPagesHandler} />
     </div>
   );
 };
