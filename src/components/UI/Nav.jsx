@@ -45,7 +45,7 @@ const Nav = () => {
         </NavLink>
       </li>
       <li>
-        <NavLink to="/products/pages/1" className={styles.navLink}>
+        <NavLink to="/products/category/all/1" className={styles.navLink}>
           <span className={styles.symbol}>
             {" "}
             <FiSmile />

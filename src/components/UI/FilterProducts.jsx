@@ -1,13 +1,12 @@
 import { useContext, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-
-import { Link } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 import { ProductsContext } from "../../store/products-context.js";
+import { ParamsContext } from "../../store/params-context.js";
 
 import styles from "./styles/FilterProducts.module.css";
 
-const FilterProducts = ({ onSetCurrentProducts }) => {
+const FilterProducts = () => {
   const [
     products,
     setProducts,
@@ -19,12 +18,18 @@ const FilterProducts = ({ onSetCurrentProducts }) => {
     setProductsPerPage,
   ] = useContext(ProductsContext);
 
+  const [category, setCategory, pageNumber, setPageNumber] =
+    useContext(ParamsContext);
+
   const [productsToFilter, setProductsToFilter] = useState([]);
 
-  const params = useParams();
+  const navigate = useNavigate();
 
-  const categoryFromParams = params.category || "all";
-  const filterFromParams = params.filter || "none";
+  const { category: paramsCategory } = useParams();
+
+  const categoryFromParams = paramsCategory || category;
+  // const filterFromParams = params.filter || "none";
+  console.log(categoryFromParams);
 
   // console.log(categoryFromParams, filterFromParams);
 
@@ -45,20 +50,35 @@ const FilterProducts = ({ onSetCurrentProducts }) => {
     setProductsToFilter(currentProductsToFilter);
 
     // console.log(currentProductsToFilter);
-  }, [products, filteredProducts, productsOnSale]);
+  }, [products, filteredProducts, productsOnSale, setCategory]);
 
   const onFilterCategoryHandler = (currentCategory) => {
     let currentFilteredProducts = [];
 
-    if (currentCategory === "all") {
-      currentFilteredProducts = products;
-      setProductsPerPage([]);
-      setFilteredProducts(products.slice(0, 9));
+    navigate(`/products/category/${currentCategory}/${pageNumber}`);
+
+    setCategory(currentCategory);
+
+    // if (productsOnSale) {
+    //   if (paramsCategory === "all") {
+    //     setProductsPerPage([]);
+    //     setFilteredProducts(productsToFilter.slice(0, 9));
+    //   } else {
+    //     currentFilteredProducts = productsToFilter.filter(
+    //       (product) => product.category === paramsCategory
+    //     );
+    //     setProductsPerPage(currentFilteredProducts);
+    //     setFilteredProducts(currentFilteredProducts);
+    //   }
+    // } else {}
+    if (categoryFromParams === "all") {
+      // setProductsPerPage([]);
+      setFilteredProducts(productsToFilter.slice(0, 9));
     } else {
       currentFilteredProducts = productsToFilter.filter(
-        (product) => product.category === currentCategory
+        (product) => product.category === categoryFromParams
       );
-      setProductsPerPage(currentFilteredProducts);
+      // setProductsPerPage(currentFilteredProducts);
       setFilteredProducts(currentFilteredProducts);
     }
   };
@@ -168,57 +188,61 @@ const FilterProducts = ({ onSetCurrentProducts }) => {
   };
 
   return (
-    <div className={styles.filterContainer}>
-      {filterCategories.map((category) => {
-        return (
-          <Link to={`/products/category/${category}`} key={category}>
-            <span
-              key={category}
-              className={styles.category}
-              onClick={() => onFilterCategoryHandler(category)}
-            >
-              {category}
-            </span>
-          </Link>
-        );
-      })}
-      <div>
-        <span
-          className={styles.subFilter}
-          onClick={onLatestProductFilterHandler}
-        >
-          Latest |
-        </span>
-        <span
-          className={styles.subFilter}
-          onClick={onOldestProductFilterHandler}
-        >
-          Oldest |
-        </span>
-        <span
-          className={styles.subFilter}
-          onClick={onLeastExpensiveProductFilterHandler}
-        >
-          Least Expensive |
-        </span>
-        <span
-          className={styles.subFilter}
-          onClick={onMostExpensiveProductFilterHandler}
-        >
-          Most Expensive |
-        </span>
-        <span
-          className={styles.subFilter}
-          onClick={onAscendingAlphaBeticProductFilterHandler}
-        >
-          [A-Z] |
-        </span>
-        <span
-          className={styles.subFilter}
-          onClick={onDescendingAlphabeticProductFilterHandler}
-        >
-          [Z-A]
-        </span>
+    <div className={styles.allFiltersContainer}>
+      <div className={styles.filterContainer}>
+        {filterCategories.map((category) => {
+          return (
+            <div key={category}>
+              <span
+                key={category}
+                className={styles.category}
+                onClick={() => onFilterCategoryHandler(category)}
+              >
+                {category}
+              </span>
+            </div>
+          );
+        })}
+      </div>
+      <div className={styles.subCategoriesContainer}>
+        <div>
+          <span
+            className={styles.subFilter}
+            onClick={onLatestProductFilterHandler}
+          >
+            Latest |
+          </span>
+          <span
+            className={styles.subFilter}
+            onClick={onOldestProductFilterHandler}
+          >
+            Oldest |
+          </span>
+          <span
+            className={styles.subFilter}
+            onClick={onLeastExpensiveProductFilterHandler}
+          >
+            Least Expensive |
+          </span>
+          <span
+            className={styles.subFilter}
+            onClick={onMostExpensiveProductFilterHandler}
+          >
+            Most Expensive |
+          </span>
+          <span
+            className={styles.subFilter}
+            onClick={onAscendingAlphaBeticProductFilterHandler}
+          >
+            [A-Z] |
+          </span>
+          <span
+            className={styles.subFilter}
+            onClick={onDescendingAlphabeticProductFilterHandler}
+          >
+            [Z-A]
+          </span>
+        </div>
       </div>
     </div>
   );

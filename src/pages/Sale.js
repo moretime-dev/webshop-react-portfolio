@@ -11,6 +11,8 @@ const Sale = () => {
     setFilteredProducts,
     productsOnSale,
     setProductsOnSale,
+    productsPerPage,
+    setProductsPerPage,
   ] = useContext(ProductsContext);
 
   useEffect(() => {
@@ -21,7 +23,8 @@ const Sale = () => {
     setProductsOnSale(true);
 
     setFilteredProducts(currentProductsOnSale);
-  }, [products, setFilteredProducts, setProductsOnSale]);
+    setProductsPerPage(currentProductsOnSale);
+  }, [products, setFilteredProducts, setProductsOnSale, setProductsPerPage]);
 
   return <ProductsList />;
 };

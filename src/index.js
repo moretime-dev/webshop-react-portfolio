@@ -7,19 +7,22 @@ import { ProductsProvider } from "./store/products-context";
 import { UsersProvider } from "./store/users-context";
 import { AuthProvider } from "./store/auth-context";
 import { CartProvider } from "./store/cart-context";
+import { ParamsProvider } from "./store/params-context";
 
 ReactDOM.render(
   <React.StrictMode>
     <>
-      <ProductsProvider>
-        <UsersProvider>
-          <AuthProvider>
-            <CartProvider>
-              <App />{" "}
-            </CartProvider>
-          </AuthProvider>
-        </UsersProvider>
-      </ProductsProvider>
+      <ParamsProvider>
+        <ProductsProvider>
+          <UsersProvider>
+            <AuthProvider>
+              <CartProvider>
+                <App />{" "}
+              </CartProvider>
+            </AuthProvider>
+          </UsersProvider>
+        </ProductsProvider>
+      </ParamsProvider>
     </>
   </React.StrictMode>,
   document.getElementById("root")

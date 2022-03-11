@@ -1,4 +1,7 @@
-import { useContext, useCallback } from "react";
+import { useContext, useEffect } from "react";
+
+import { useParams } from "react-router-dom";
+
 import { ProductsContext } from "../../store/products-context.js";
 
 import ProductItem from "./ProductItem";
@@ -21,17 +24,20 @@ const ProductsList = () => {
     setProductsPerPage,
   ] = useContext(ProductsContext);
 
-  const onSetCurrentProductsHandler = useCallback(
-    (currentProducts) => {
-      setFilteredProducts(currentProducts);
-    },
-    [setFilteredProducts]
-  );
+  const { category: paramsCategory, page } = useParams();
+
+  useEffect(() => {
+    setFilteredProducts(
+      products.filter((product) => product.category === paramsCategory)
+    );
+  }, [products, paramsCategory, setFilteredProducts]);
+
+  console.log(page);
 
   return (
     <div>
-      <FilterProducts onSetCurrentProducts={onSetCurrentProductsHandler} />
-      <Pagination onSetCurrentProducts={onSetCurrentProductsHandler} />
+      <FilterProducts />
+      <Pagination />
       <div className={styles.productListContainerWrapper}>
         <div className={styles.productListContainer}>
           {products.length === 0 ? (

@@ -1,6 +1,12 @@
-.filterContainer {
+.allFiltersContainer {
   display: block;
+  justify-content: center;
+}
+
+.filterContainer {
+  display: flex;
   margin-top: 3em;
+  justify-content: center;
 }
 
 .category {
@@ -11,6 +17,11 @@
 
 .category:hover {
   color: rgb(230, 169, 39);
+}
+
+.subCategoriesContainer {
+  display: flex;
+  justify-content: center;
 }
 
 .subFilter {

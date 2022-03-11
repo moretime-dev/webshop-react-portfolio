@@ -1,13 +1,14 @@
 import { useContext, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { ProductsContext } from "../../store/products-context";
+import { ParamsContext } from "../../store/params-context";
 
 import ProductsList from "../Products/ProductsList";
 import Button from "../UI/Button";
 
 import styles from "./styles/Pagination.module.css";
 
-const Pagination = ({ onSetCurrentProducts }) => {
+const Pagination = () => {
   const [
     products,
     setProducts,
@@ -19,7 +20,9 @@ const Pagination = ({ onSetCurrentProducts }) => {
     setProductsPerPage,
   ] = useContext(ProductsContext);
 
-  const [currentPage, setCurrentPage] = useState(1);
+  const [category, setCategory, pageNumber, setPageNumber] =
+    useContext(ParamsContext);
+
   const [itemsPerPage] = useState(9);
 
   const [pageNumberLimit] = useState(3);
@@ -28,7 +31,7 @@ const Pagination = ({ onSetCurrentProducts }) => {
 
   const pages = [];
 
-  console.log(productsPerPage);
+  // console.log(filteredProducts);
 
   if (productsPerPage.length === 0) {
     for (let i = 1; i <= Math.ceil(products.length / itemsPerPage); i++) {
@@ -44,35 +47,32 @@ const Pagination = ({ onSetCurrentProducts }) => {
     }
   }
 
-  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfLastItem = pageNumber * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
 
   useEffect(() => {
-    //  setCurrentItems(products.slice(indexOfFirstItem, indexOfLastItem));
-    onSetCurrentProducts(products.slice(indexOfFirstItem, indexOfLastItem));
-  }, [indexOfFirstItem, indexOfLastItem, products, onSetCurrentProducts]);
+    setFilteredProducts(products.slice(indexOfFirstItem, indexOfLastItem));
+  }, [indexOfFirstItem, indexOfLastItem, products, setFilteredProducts]);
 
   const onHandlePageSelect = (page) => {
-    setCurrentPage(page);
+    setPageNumber(page);
   };
 
   const onPrevPageHandler = () => {
-    if (currentPage - 1 === 0) return;
-    setCurrentPage((prev) => prev - 1);
-    //  props.onSetPages(currentItems);
+    if (pageNumber - 1 === 0) return;
+    setPageNumber((prev) => prev - 1);
 
-    if ((currentPage - 1) % pageNumberLimit === 0) {
+    if ((pageNumber - 1) % pageNumberLimit === 0) {
       setMaxPageNumberLimit(maxPageNumberLimit - pageNumberLimit);
       setMinPageNumberLimit(minPageNumberLimit - pageNumberLimit);
     }
   };
 
   const onNextPageHandler = () => {
-    if (currentPage + 1 > pages.length) return;
-    setCurrentPage((prev) => prev + 1);
-    //  props.onSetPages(currentItems);
+    if (pageNumber + 1 > pages.length) return;
+    setPageNumber((prev) => prev + 1);
 
-    if (currentPage + 1 > maxPageNumberLimit) {
+    if (pageNumber + 1 > maxPageNumberLimit) {
       setMaxPageNumberLimit(maxPageNumberLimit + pageNumberLimit);
       setMinPageNumberLimit(minPageNumberLimit + pageNumberLimit);
     }
@@ -81,10 +81,12 @@ const Pagination = ({ onSetCurrentProducts }) => {
   const renderPageNumbers = pages.map((page) => {
     if (page < maxPageNumberLimit + 1 && page > minPageNumberLimit) {
       return (
-        <Link to={`/products/pages/${page}`} key={page}>
+        <Link to={`/products/category/all/${page}`} key={page}>
           <Button
             onClick={() => onHandlePageSelect(page)}
-            className={currentPage === page && styles.active}
+            className={`${pageNumber === page && styles.active} ${
+              styles.pageButton
+            }`}
           >
             {page}
           </Button>
@@ -96,16 +98,16 @@ const Pagination = ({ onSetCurrentProducts }) => {
   return (
     <div className={styles.paginationContainer}>
       <Link
-        to={`/products/pages/${
-          currentPage - 1 === 0 ? currentPage : currentPage - 1
+        to={`/products/category/all/${
+          pageNumber - 1 === 0 ? pageNumber : pageNumber - 1
         }`}
       >
         <Button buttonText="PREV" onClick={onPrevPageHandler} />
       </Link>
       {renderPageNumbers}
       <Link
-        to={`/products/pages/${
-          currentPage + 1 > pages.length ? currentPage : currentPage + 1
+        to={`/products/category/all/${
+          pageNumber + 1 > pages.length ? pageNumber : pageNumber + 1
         }`}
       >
         <Button buttonText="NEXT" onClick={onNextPageHandler} />

@@ -1,11 +1,11 @@
 .button {
   padding: 0 2em;
   border-radius: 1em;
-  border: none;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
+  border: 1px solid grey;
 }
 
 .buttonText {
