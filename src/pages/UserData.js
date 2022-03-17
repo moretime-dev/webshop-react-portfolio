@@ -22,25 +22,25 @@ const UserData = () => {
     <div>
       <section>
         <p>
-          Full Name:{" "}
+          <span className={styles.userDataLabel}>Full Name:</span>{" "}
           {currentUser.currentUserFullName
             ? currentUser.currentUserFullName
             : "Please fill out address form!"}
         </p>
         <p>
-          Street Name:{" "}
+          <span className={styles.userDataLabel}>Street Name:</span>{" "}
           {currentUser.currentUserStreetName
             ? currentUser.currentUserStreetName
             : "Please fill out address form!"}
         </p>
         <p>
-          Zip Code:{" "}
+          <span className={styles.userDataLabel}>Zip Code:</span>{" "}
           {currentUser.currentUserZipCode
             ? currentUser.currentUserZipCode
             : "Please fill out address form!"}
         </p>
         <p>
-          City:{" "}
+          <span className={styles.userDataLabel}>City:</span>{" "}
           {currentUser.currentUserCity
             ? currentUser.currentUserCity
             : "Please fill out address form!"}

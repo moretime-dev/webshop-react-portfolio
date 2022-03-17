@@ -5,7 +5,7 @@ const OrderHistory = () => {
 
   return (
     <div>
-      <h2>Order History</h2>
+      <h2 style={{ marginTop: "3em" }}>Order History</h2>
       <div>
         {currentUser.currentUserOrderHistory
           ? currentUser.currentUserOrderHistory.reverse().map((order) => {

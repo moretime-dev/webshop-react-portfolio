@@ -32,26 +32,6 @@ const CheckoutPage = () => {
     setPaymentMethod(event.target.value);
   };
 
-  // const newOrder = {
-  //   date: new Date(),
-  //   products: [...productsInCart],
-  //   totalAmount: totalPrice,
-  //   paymentMethod: paymentMethod,
-  // };
-
-  // const currentOrderHistory = {
-  //   ...currentUser.currentUserOrderHistory,
-  //   newOrder,
-  // };
-
-  // const orderHistory = {
-  //   orderHistory: [],
-  // };
-
-  // for (let order in currentOrderHistory) {
-  //   orderHistory.orderHistory.push(currentOrderHistory[order]);
-  // }
-
   const onBuyNowButtonClickHandler = async () => {
     const newOrder = {
       date: new Date(Date.now()).toUTCString(),
@@ -63,9 +43,7 @@ const CheckoutPage = () => {
     const currentOrderHistory = [];
 
     for (let thing in currentUser.currentUserOrderHistory) {
-      // for (let order in currentUser.currentUserOrderHistory[thing]) {
       currentOrderHistory.push(currentUser.currentUserOrderHistory[thing]);
-      // }
     }
 
     currentOrderHistory.push(newOrder);
@@ -102,9 +80,15 @@ const CheckoutPage = () => {
   };
 
   return (
-    <div>
-      <div>Total Price: €{totalPrice.toFixed(2)}</div>
-      <div>eMail: {currentUser.currentUserEmail}</div>
+    <div className={styles.checkoutDataContainer}>
+      <div>
+        <span className={styles.checkoutDataLabel}>Total Price:</span> €
+        {totalPrice.toFixed(2)}
+      </div>
+      <div>
+        <span className={styles.checkoutDataLabel}>eMail:</span>{" "}
+        {currentUser.currentUserEmail}
+      </div>
 
       {currentUser.currentUserFullName &&
       currentUser.currentUserFullName !== "" &&
@@ -115,7 +99,7 @@ const CheckoutPage = () => {
       currentUser.currentUserCity &&
       currentUser.currentUserCity !== "" ? (
         <div>
-          Address:
+          <h4>Shipping Address:</h4>
           <p>{currentUser.currentUserFullName}</p>
           <p>{currentUser.currentUserStreetName}</p>
           <p>

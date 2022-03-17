@@ -2,14 +2,14 @@
   width: 20vw;
   background-color: rgb(235, 195, 110);
   cursor: pointer;
-  height: 40vh;
+  height: 30vh;
 }
 
 .productContainer {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 40vh;
+  height: 30vh;
   color: #000;
 }
 

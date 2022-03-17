@@ -26,6 +26,7 @@
 
 .productDetailsPriceQuantityAddToCartContainer {
   margin-top: 2em;
+  margin-bottom: 2em;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -45,6 +46,7 @@
   display: flex;
   justify-content: center;
   margin-top: 2em;
+  margin-bottom: 2em;
 }
 
 .editButton {

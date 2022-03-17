@@ -1,3 +1,8 @@
+.userDataContainer {
+  margin-top: 5em;
+  font-size: 1.3rem;
+}
+
 .userProfileButton {
   margin: 2em auto;
 }

@@ -13,7 +13,7 @@ const UserProfile = () => {
   };
 
   return (
-    <div>
+    <div className={styles.userDataContainer}>
       <UserData />
       <Button
         buttonText="OrderHistory"
