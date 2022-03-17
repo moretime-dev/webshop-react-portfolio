@@ -16,3 +16,9 @@
   border-top: 2px solid black;
   background-color: rgb(233, 201, 97);
 }
+
+@media (max-width: 500px) {
+  .orderContainer {
+    width: 80vw;
+  }
+}

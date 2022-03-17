@@ -11,8 +11,20 @@
   font-weight: bold;
 }
 
+.paymentMethodOptions {
+  width: 30vw;
+  font-size: 1rem;
+}
+
 .checkoutPageButton {
   margin: 2em auto;
   background-color: rgb(140, 218, 25);
   color: white;
+}
+
+@media (max-width: 500px) {
+  .paymentMethodOptions {
+    width: 70vw;
+    font-size: 0.8rem;
+  }
 }

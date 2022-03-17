@@ -59,7 +59,7 @@ const Cart = () => {
     <Card className={styles.cartCard}>
       <div>
         {productsInCart.length === 0 ? (
-          <span>No Products In Cart</span>
+          <p className={styles.noProductsInCartPrompt}>No Products In Cart</p>
         ) : (
           productsInCart.map((product) => (
             <div className={styles.cartProductContainer} key={product[0].id}>

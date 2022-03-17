@@ -55,17 +55,19 @@
   margin-right: 2em;
 }
 
-@media (max-width: 500px) {
-  .header {
-    height: 30vh;
-    background-image: url("../../../assets/img/header-mobile.jpg");
-  }
-
+@media (max-width: 1300px) {
   .navContainer {
     display: none;
   }
 
   .mobileNav {
     display: block;
+  }
+}
+
+@media (max-width: 500px) {
+  .header {
+    height: 30vh;
+    background-image: url("../../../assets/img/header-mobile.jpg");
   }
 }

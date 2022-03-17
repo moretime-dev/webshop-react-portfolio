@@ -87,7 +87,9 @@ const CheckoutPage = () => {
       </div>
       <div>
         <span className={styles.checkoutDataLabel}>eMail:</span>{" "}
-        {currentUser.currentUserEmail}
+        <span className={styles.checkoutEmail}>
+          {currentUser.currentUserEmail}
+        </span>
       </div>
 
       {currentUser.currentUserFullName &&
@@ -114,6 +116,7 @@ const CheckoutPage = () => {
           name="payment-options"
           id="payment-options"
           onChange={onSelectPaymentMethodChangeHandler}
+          className={styles.paymentMethodOptions}
         >
           <option value="">--Please Select Payment Method--</option>
           <option value="Paypal">Paypal</option>
