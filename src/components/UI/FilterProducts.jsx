@@ -29,9 +29,6 @@ const FilterProducts = () => {
 
   const categoryFromParams = paramsCategory || category;
   // const filterFromParams = params.filter || "none";
-  console.log(categoryFromParams);
-
-  // console.log(categoryFromParams, filterFromParams);
 
   const filterCategories = [
     "all",
@@ -48,8 +45,6 @@ const FilterProducts = () => {
       : [...filteredProducts];
 
     setProductsToFilter(currentProductsToFilter);
-
-    // console.log(currentProductsToFilter);
   }, [products, filteredProducts, productsOnSale, setCategory]);
 
   const onFilterCategoryHandler = (currentCategory) => {
@@ -72,8 +67,9 @@ const FilterProducts = () => {
     //   }
     // } else {}
     if (categoryFromParams === "all") {
-      // setProductsPerPage([]);
-      setFilteredProducts(productsToFilter.slice(0, 9));
+      setProductsPerPage(productsToFilter.slice(0, 9));
+      setFilteredProducts([]);
+      setPageNumber(1);
     } else {
       currentFilteredProducts = productsToFilter.filter(
         (product) => product.category === categoryFromParams

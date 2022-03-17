@@ -1,8 +1,9 @@
 import { useContext, useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 import { AuthContext } from "../../store/auth-context";
 import { ProductsContext } from "../../store/products-context";
+import { ParamsContext } from "../../store/params-context";
 
 import { AiOutlineHome, AiOutlineFileAdd } from "react-icons/ai";
 import { FiSmile, FiPercent } from "react-icons/fi";
@@ -10,6 +11,10 @@ import { FiSmile, FiPercent } from "react-icons/fi";
 import styles from "./styles/Nav.module.css";
 
 const Nav = () => {
+  const navigate = useNavigate();
+  const [category, setCategory, pageNumber, setPageNumber] =
+    useContext(ParamsContext);
+
   const [currentUserRole, currentUserIsLoggedIn] = useContext(AuthContext);
   const [
     products,
@@ -29,8 +34,10 @@ const Nav = () => {
 
   const onProductsLinkClickHandler = () => {
     setFilteredProducts(products.slice(0, 9));
-    setProductsPerPage([]);
+    // setProductsPerPage([]);
     setProductsOnSale(false);
+    setPageNumber(1);
+    setCategory("all");
   };
 
   return (
@@ -45,7 +52,10 @@ const Nav = () => {
         </NavLink>
       </li>
       <li>
-        <NavLink to="/products/category/all/1" className={styles.navLink}>
+        <NavLink
+          to={`/products/category/${category}/1`}
+          className={styles.navLink}
+        >
           <span className={styles.symbol}>
             {" "}
             <FiSmile />
