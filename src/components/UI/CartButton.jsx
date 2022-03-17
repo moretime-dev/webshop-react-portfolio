@@ -8,13 +8,14 @@ import Button from "./Button";
 import { BsCart4 } from "react-icons/bs";
 import styles from "./styles/CartButton.module.css";
 
-const Cart = () => {
+const Cart = ({ onClick }) => {
   const [productsQuantity, setproductsQuantity] = useContext(CartContext);
 
   return (
     <Link to="/cart">
       <Button
         buttonText={<BsCart4 style={{ color: "white" }} />}
+        onClick={onClick}
         className={styles.button}
       >
         <span className={styles.badge}>{productsQuantity}</span>

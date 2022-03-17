@@ -1,5 +1,5 @@
-import { useContext, useEffect, useState } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { NavLink } from "react-router-dom";
 
 import { AuthContext } from "../../store/auth-context";
 import { ProductsContext } from "../../store/products-context";
@@ -11,7 +11,6 @@ import { FiSmile, FiPercent } from "react-icons/fi";
 import styles from "./styles/Nav.module.css";
 
 const Nav = () => {
-  const navigate = useNavigate();
   const [category, setCategory, pageNumber, setPageNumber] =
     useContext(ParamsContext);
 
