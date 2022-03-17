@@ -152,3 +152,42 @@
     transform: translateX(0);
   }
 }
+
+@media (max-width: 900px) {
+  .homeContainer {
+    max-width: 900px;
+    margin: 2em auto;
+  }
+
+  .headline {
+    font-size: 3rem;
+  }
+
+  .paragraphContainer {
+    width: 80vw;
+    padding: 1em;
+    margin: 4em auto 4em auto;
+  }
+
+  .argument {
+    font-size: 1rem;
+  }
+
+  .fair {
+    background-image: url("../../assets/img/fair-mobile.jpg");
+  }
+
+  .moneyBack {
+    background-image: url("../../assets/img/moneyback-mobile.jpg");
+  }
+
+  .green {
+    background-image: url("../../assets/img/green-mobile.jpg");
+  }
+
+  .fair,
+  .moneyBack,
+  .green {
+    height: 20vh;
+  }
+}

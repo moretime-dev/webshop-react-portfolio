@@ -27,11 +27,6 @@ const Nav = () => {
     setProductsPerPage,
   ] = useContext(ProductsContext);
 
-  // console.log(
-  //   "Is logged in: " + currentUserIsLoggedIn,
-  //   "Role: " + currentUserRole
-  // );
-
   const onProductsLinkClickHandler = () => {
     setFilteredProducts(products.slice(0, 9));
     // setProductsPerPage([]);

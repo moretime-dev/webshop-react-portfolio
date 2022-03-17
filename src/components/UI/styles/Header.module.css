@@ -7,6 +7,11 @@
   color: white;
 }
 
+.mobileNav {
+  display: none;
+  font-size: 2rem;
+}
+
 .navContainer {
   position: fixed;
   width: 100vw;
@@ -48,4 +53,19 @@
 .userHandlingLink {
   color: white;
   margin-right: 2em;
+}
+
+@media (max-width: 900px) {
+  .header {
+    height: 30vh;
+    background-image: url("../../../assets/img/header-mobile.jpg");
+  }
+
+  .navContainer {
+    display: none;
+  }
+
+  .mobileNav {
+    display: block;
+  }
 }

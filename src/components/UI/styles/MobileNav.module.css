@@ -1,0 +1,42 @@
+.mobileNavBurger {
+  position: fixed;
+  top: 3%;
+  left: 3%;
+  fill: white;
+  stroke: black;
+  z-index: 1002;
+  /* border: 2px solid red; */
+}
+.mobileNavClose {
+  position: fixed;
+  top: 1%;
+  left: 4%;
+  font-size: 3rem;
+  color: white;
+  z-index: 1002;
+  /* border: 2px solid red; */
+}
+
+.mobileNavContainer {
+  position: absolute;
+  z-index: 1001;
+}
+
+.mobileNavOverlay {
+  position: fixed;
+  width: 80vw;
+  height: 100vh;
+  background-color: rgba(230, 169, 39, 0.5);
+  transform: translateX(-100%);
+  animation: mobileNav 0.2s forwards ease-in;
+}
+
+@keyframes mobileNav {
+  0% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
