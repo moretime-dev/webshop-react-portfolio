@@ -129,11 +129,12 @@ const ProductDetails = () => {
                   buttonText="+"
                   onClick={onProductQuantityIncreaseHandler}
                 />
-                <Button
-                  buttonText="Add To Cart"
-                  onClick={onProductAddToCartHandler}
-                />
               </div>
+              <Button
+                buttonText="Add To Cart"
+                onClick={onProductAddToCartHandler}
+                className={styles.addToCartButton}
+              />
               {currentUserIsLoggedIn && currentUserRole === "admin" ? (
                 <div className={styles.adminButtonsContainer}>
                   {" "}

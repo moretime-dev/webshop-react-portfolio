@@ -41,22 +41,45 @@
 }
 
 .navContainer {
-  margin-top: 5em;
+  margin-top: 2em;
 }
 
 .navLink {
   display: flex;
   justify-content: center;
   align-items: center;
-  text-decoration: none;
+  font-size: 1.5rem;
   color: white;
   font-weight: 600;
   text-shadow: 1px 1px 2px black;
-  margin-bottom: 2em;
+  margin-bottom: 1em;
 }
 
 .symbol {
   display: flex;
   padding: 0.23em;
   margin-bottom: 0.18em;
+}
+
+.userFunctionsContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 1em 2em;
+}
+.userFunctionsContainer > * {
+  margin-bottom: 1em;
+}
+
+.userHandling {
+  display: flex;
+  flex-direction: column;
+}
+
+.userHandlingLink {
+  font-size: 1.5rem;
+  color: white;
+  text-shadow: 1px 1px 2px black;
+  margin-bottom: 0.5em;
 }

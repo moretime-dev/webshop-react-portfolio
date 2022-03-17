@@ -133,7 +133,11 @@ const MobileNav = () => {
             {currentUserIsLoggedIn && currentUserRole === "admin" && (
               <li>
                 {" "}
-                <NavLink to="/add-product" className={styles.navLink}>
+                <NavLink
+                  to="/add-product"
+                  onClick={onMobileLinkClickHandler}
+                  className={styles.navLink}
+                >
                   <span className={styles.symbol}>
                     {" "}
                     <AiOutlineFileAdd />{" "}
@@ -143,16 +147,26 @@ const MobileNav = () => {
               </li>
             )}
           </ul>{" "}
-          <CartButton onClick={onMobileLinkClickHandler} />
-          {currentUserIsLoggedIn && currentUserRole === "user" ? (
-            <div className={styles.userHandling}>
-              <Link
-                to="/user-profile"
-                className={styles.userHandlingLink}
-                onClick={onMobileLinkClickHandler}
-              >
-                My Profile
-              </Link>
+          <div className={styles.userFunctionsContainer}>
+            <CartButton onClick={onMobileLinkClickHandler} />
+            {currentUserIsLoggedIn && currentUserRole === "user" ? (
+              <div className={styles.userHandling}>
+                <Link
+                  to="/user-profile"
+                  className={styles.userHandlingLink}
+                  onClick={onMobileLinkClickHandler}
+                >
+                  My Profile
+                </Link>
+                <Link
+                  to="/"
+                  className={styles.userHandlingLink}
+                  onClick={onLogoutHandler}
+                >
+                  Logout
+                </Link>
+              </div>
+            ) : currentUserIsLoggedIn && currentUserRole === "admin" ? (
               <Link
                 to="/"
                 className={styles.userHandlingLink}
@@ -160,33 +174,25 @@ const MobileNav = () => {
               >
                 Logout
               </Link>
-            </div>
-          ) : currentUserIsLoggedIn && currentUserRole === "admin" ? (
-            <Link
-              to="/"
-              className={styles.userHandlingLink}
-              onClick={onLogoutHandler}
-            >
-              Logout
-            </Link>
-          ) : (
-            <div className={styles.userHandling}>
-              <Link
-                to="/add-new-user"
-                onClick={onMobileLinkClickHandler}
-                className={styles.userHandlingLink}
-              >
-                Sign Up
-              </Link>
-              <Link
-                to="/login-user"
-                onClick={onMobileLinkClickHandler}
-                className={styles.userHandlingLink}
-              >
-                Login
-              </Link>
-            </div>
-          )}{" "}
+            ) : (
+              <div className={styles.userHandling}>
+                <Link
+                  to="/add-new-user"
+                  onClick={onMobileLinkClickHandler}
+                  className={styles.userHandlingLink}
+                >
+                  Sign Up
+                </Link>
+                <Link
+                  to="/login-user"
+                  onClick={onMobileLinkClickHandler}
+                  className={styles.userHandlingLink}
+                >
+                  Login
+                </Link>
+              </div>
+            )}{" "}
+          </div>
         </div>
       )}
     </div>

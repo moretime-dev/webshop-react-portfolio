@@ -18,3 +18,14 @@
   left: 50%;
   transform: translate(-50%, -10%);
 }
+
+@media (max-width: 500px) {
+  .productListContainerWrapper {
+    margin-top: 1em;
+  }
+
+  .productListContainer {
+    width: 100vw;
+    grid-template-columns: 1fr;
+  }
+}

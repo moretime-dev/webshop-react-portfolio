@@ -12,3 +12,15 @@
 .pageButton {
   font-size: 1.5rem;
 }
+
+@media (max-width: 500px) {
+  .paginationContainer {
+    width: 100vw;
+  }
+
+  .pageButton {
+    font-size: 1rem;
+    padding: 0 1em;
+    border-radius: 0.6em;
+  }
+}

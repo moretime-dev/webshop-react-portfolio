@@ -11,3 +11,9 @@
 .buttonText {
   font-size: 1.5rem;
 }
+
+@media (max-width: 500px) {
+  .button {
+    padding: 0 1em;
+  }
+}

@@ -30,3 +30,17 @@
 .userButton {
   margin: 4em auto;
 }
+
+@media (max-width: 500px) {
+  .userFormCard {
+    width: 80vw;
+  }
+
+  .userField {
+    width: 70%;
+  }
+
+  .userInput {
+    width: 100%;
+  }
+}

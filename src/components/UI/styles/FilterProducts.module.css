@@ -32,3 +32,16 @@
 .subFilter:hover {
   color: rgb(230, 169, 39);
 }
+
+@media (max-width: 500px) {
+  .filterContainer {
+    display: grid;
+    width: 80vw;
+    grid-template-columns: 1fr 1fr 1fr;
+    margin: 2em auto 1em auto;
+  }
+
+  .category {
+    font-size: 1rem;
+  }
+}

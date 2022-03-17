@@ -54,3 +54,16 @@ textarea {
   outline: none;
   border: 2px solid rgb(200, 255, 202);
 }
+
+@media (max-width: 500px) {
+  .h1 {
+    margin-bottom: 1em;
+  }
+  .formField {
+    width: 80%;
+  }
+
+  .formField > * {
+    width: 100%;
+  }
+}
