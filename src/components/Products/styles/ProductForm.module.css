@@ -55,7 +55,7 @@ textarea {
   border: 2px solid rgb(200, 255, 202);
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1500px) {
   .h1 {
     font-size: 1.1rem;
   }

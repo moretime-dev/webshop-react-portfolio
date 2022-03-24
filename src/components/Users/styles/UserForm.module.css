@@ -31,7 +31,7 @@
   margin: 4em auto;
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1500px) {
   .userFormCard {
     width: 60vw;
   }

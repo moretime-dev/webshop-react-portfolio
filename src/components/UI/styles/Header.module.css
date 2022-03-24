@@ -55,7 +55,7 @@
   margin-right: 2em;
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1500px) {
   .header {
     height: 40vh;
     background-image: url("../../../assets/img/header-tablet.jpg");

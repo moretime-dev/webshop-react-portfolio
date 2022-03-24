@@ -72,7 +72,7 @@ a {
   margin-bottom: 2em;
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1500px) {
   .cartCard {
     width: 70vw;
   }
@@ -113,7 +113,7 @@ a {
   }
 }
 
-@media (max-width: 500px) {
+@media (max-width: 600px) {
   .cartCard {
     width: 90vw;
   }

@@ -17,6 +17,12 @@
   background-color: rgb(233, 201, 97);
 }
 
+@media (max-width: 1500px) {
+  .orderContainer {
+    width: 60vw;
+  }
+}
+
 @media (max-width: 500px) {
   .orderContainer {
     width: 80vw;
