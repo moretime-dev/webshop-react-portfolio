@@ -123,18 +123,20 @@ const ProductDetails = () => {
                 />
                 <Button
                   buttonText="-"
+                  className={styles.productDetailsIncreaseAndDecreaseButton}
                   onClick={onProductQuantityDecreaseHandler}
                 />
                 <Button
                   buttonText="+"
+                  className={styles.productDetailsIncreaseAndDecreaseButton}
                   onClick={onProductQuantityIncreaseHandler}
                 />
+                <Button
+                  buttonText="Add To Cart"
+                  onClick={onProductAddToCartHandler}
+                  className={styles.addToCartButton}
+                />
               </div>
-              <Button
-                buttonText="Add To Cart"
-                onClick={onProductAddToCartHandler}
-                className={styles.addToCartButton}
-              />
               {currentUserIsLoggedIn && currentUserRole === "admin" ? (
                 <div className={styles.adminButtonsContainer}>
                   {" "}
