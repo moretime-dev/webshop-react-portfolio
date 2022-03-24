@@ -22,6 +22,8 @@ const CheckoutPage = () => {
   const [currentUser, setCurrentUser] = useState({});
   const [paymentMethod, setPaymentMethod] = useState("");
 
+  const [buyNowButtonDisabled, setBuyNowButtonDisabled] = useState(true);
+
   useEffect(() => {
     setCurrentUser(JSON.parse(localStorage.getItem("currentUser")));
   }, []);
@@ -30,6 +32,11 @@ const CheckoutPage = () => {
 
   const onSelectPaymentMethodChangeHandler = (event) => {
     setPaymentMethod(event.target.value);
+    if (event.target.value !== "") {
+      setBuyNowButtonDisabled(false);
+    } else {
+      setBuyNowButtonDisabled(true);
+    }
   };
 
   const onBuyNowButtonClickHandler = async () => {
@@ -127,7 +134,12 @@ const CheckoutPage = () => {
       <Button
         buttonText="Buy Now"
         onClick={onBuyNowButtonClickHandler}
-        className={styles.checkoutPageButton}
+        className={`${
+          !buyNowButtonDisabled
+            ? styles.checkoutPageButton
+            : styles.checkoutPageButtonDisabled
+        } `}
+        disabled={buyNowButtonDisabled}
       />
     </div>
   );

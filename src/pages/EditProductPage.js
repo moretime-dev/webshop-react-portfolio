@@ -24,6 +24,8 @@ const EditProductPage = () => {
   const [products, setProducts] = useContext(ProductsContext);
   const product = products.filter((product) => product.id === id);
 
+  console.log(product);
+
   const [buttonDisabled, setButtonDisabled] = useState(true);
 
   const [productName, setProductName] = useState(product[0].name);
@@ -38,7 +40,7 @@ const EditProductPage = () => {
 
   const [productImagePath, setProductImagePath] = useState(product[0].imgPath);
 
-  const [showDiscountInput, setShowDiscountInput] = useState(false);
+  const [showDiscountInput, setShowDiscountInput] = useState(true);
   const [productData, setProductData] = useState({});
 
   const [validProductName, setValidProductName] = useState(false);

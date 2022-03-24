@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { CartContext } from "../../store/cart-context";
 
@@ -10,6 +10,8 @@ import styles from "./styles/Cart.module.css";
 const Cart = () => {
   const navigate = useNavigate();
 
+  const [checkoutButtonDisabled, setCheckoutButtonDisabled] = useState(true);
+
   const [
     productsQuantity,
     setproductsQuantity,
@@ -17,6 +19,16 @@ const Cart = () => {
     setProductsInCart,
     totalPrice,
   ] = useContext(CartContext);
+
+  useEffect(() => {
+    if (totalPrice > 0) {
+      setCheckoutButtonDisabled(false);
+    } else {
+      setCheckoutButtonDisabled(true);
+    }
+
+    console.log("test");
+  }, [totalPrice]);
 
   const onProductQuantityDecreaseHandler = (productQuantity, id) => {
     let currentProduct = productsInCart.filter(
@@ -130,6 +142,7 @@ const Cart = () => {
         <Button
           buttonText="Go To Checkout"
           onClick={onGoToCheckoutClickHandler}
+          disabled={checkoutButtonDisabled}
         />
       </div>
     </Card>

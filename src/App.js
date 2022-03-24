@@ -50,11 +50,6 @@ function App() {
           />
           <Route path="/sale" element={<Sale />} />
           <Route path="/cart" element={<CartPage />} />
-          <Route path="/checkout" element={<CheckoutPage />} />
-          <Route
-            path="/order-confirmation"
-            element={<OrderConfirmationPage />}
-          />
           [// Only Admin allowed]
           <Route element={<RequireAuth allowedRoles={"admin"} />}>
             <Route path="/add-product" exact element={<AddProduct />} />
@@ -81,6 +76,11 @@ function App() {
             <Route
               path="/user-profile/order-history"
               element={<OrderHistory />}
+            />{" "}
+            <Route path="/checkout" element={<CheckoutPage />} />
+            <Route
+              path="/order-confirmation"
+              element={<OrderConfirmationPage />}
             />
           </Route>
           <Route path="login-user" element={<LoginUser />} />
