@@ -24,8 +24,6 @@ const EditProductPage = () => {
   const [products, setProducts] = useContext(ProductsContext);
   const product = products.filter((product) => product.id === id);
 
-  console.log(product);
-
   const [buttonDisabled, setButtonDisabled] = useState(true);
 
   const [productName, setProductName] = useState(product[0].name);
