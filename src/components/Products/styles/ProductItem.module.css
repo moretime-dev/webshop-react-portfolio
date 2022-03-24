@@ -31,6 +31,31 @@
   flex-direction: column;
 }
 
+@media (max-width: 1200px) {
+  .card {
+    width: 25vw;
+    margin: 1em auto;
+  }
+
+  .imgContainer {
+    margin-right: 0.5em;
+  }
+
+  .infoContainer {
+    width: 50%;
+  }
+}
+
+@media (max-width: 900px) {
+  .card {
+    height: 20vh;
+  }
+
+  .productContainer {
+    height: 20vh;
+  }
+}
+
 @media (max-width: 500px) {
   .card {
     width: 70vw;

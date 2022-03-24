@@ -19,6 +19,18 @@
   transform: translate(-50%, -10%);
 }
 
+@media (max-width: 1200px) {
+  .productListContainer {
+    width: 90vw;
+  }
+}
+
+@media (max-width: 900px) {
+  .productListContainer {
+    width: 90vw;
+  }
+}
+
 @media (max-width: 500px) {
   .productListContainerWrapper {
     margin-top: 1em;

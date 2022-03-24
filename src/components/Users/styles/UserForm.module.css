@@ -31,6 +31,26 @@
   margin: 4em auto;
 }
 
+@media (max-width: 1200px) {
+  .userFormCard {
+    width: 60vw;
+  }
+
+  .userField {
+    width: 40%;
+  }
+
+  .userInput {
+    width: 100%;
+  }
+}
+
+@media (max-width: 900px) {
+  .userField {
+    width: 60%;
+  }
+}
+
 @media (max-width: 500px) {
   .userFormCard {
     width: 80vw;

@@ -74,6 +74,10 @@ const ProductDetails = () => {
     }
   };
 
+  const onGoToCartClickHandler = () => {
+    navigate("/cart");
+  };
+
   const onEditProductClickHandler = (id) => {
     navigate(`/products/edit-product/${id}`);
   };
@@ -137,6 +141,11 @@ const ProductDetails = () => {
                   className={styles.addToCartButton}
                 />
               </div>
+              <Button
+                buttonText="Go To Cart"
+                onClick={onGoToCartClickHandler}
+                className={styles.goToCartButton}
+              />
               {currentUserIsLoggedIn && currentUserRole === "admin" ? (
                 <div className={styles.adminButtonsContainer}>
                   {" "}
