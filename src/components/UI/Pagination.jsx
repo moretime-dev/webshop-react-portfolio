@@ -35,26 +35,26 @@ const Pagination = () => {
 
   useEffect(() => {
     let pages = [];
-    if (filteredProducts.length !== 0) {
-      for (
-        let i = 1;
-        i <= Math.ceil(filteredProducts.length / itemsPerPage);
-        i++
-      ) {
-        pages.push(i);
-      }
-    } else {
-      for (let i = 1; i <= Math.ceil(products.length / itemsPerPage); i++) {
-        pages.push(i);
-      }
-    }
-
-    // for (let i = 1; i <= Math.ceil(products.length / itemsPerPage); i++) {
-    //   pages.push(i);
+    // console.log(filteredProducts);
+    // if (filteredProducts.length !== 0) {
+    //   for (
+    //     let i = 1;
+    //     i <= Math.ceil(filteredProducts.length / itemsPerPage);
+    //     i++
+    //   ) {
+    //     pages.push(i);
+    //   }
+    // } else {
+    //   for (let i = 1; i <= Math.ceil(products.length / itemsPerPage); i++) {
+    //     pages.push(i);
+    //   }
     // }
 
-    setPages(pages);
-  }, [products, itemsPerPage, productsPerPage, filteredProducts]);
+    for (let i = 1; i <= Math.ceil(products.length / itemsPerPage); i++) {
+      pages.push(i);
+      setPages(pages);
+    }
+  }, [itemsPerPage, products]);
 
   useEffect(() => {
     const indexOfLastItem = pageNumber * itemsPerPage;
@@ -78,6 +78,7 @@ const Pagination = () => {
   };
 
   const onNextPageHandler = () => {
+    console.log(pages);
     if (pageNumber + 1 > pages.length) return;
     setPageNumber((prev) => prev + 1);
 

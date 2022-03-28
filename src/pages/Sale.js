@@ -23,8 +23,8 @@ const Sale = () => {
     setProductsOnSale(true);
 
     setFilteredProducts(currentProductsOnSale);
-    setProductsPerPage(currentProductsOnSale);
-  }, [products, setFilteredProducts, setProductsOnSale, setProductsPerPage]);
+    // setProductsPerPage(currentProductsOnSale);
+  }, [products.length]);
 
   return <ProductsList />;
 };

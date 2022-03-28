@@ -31,12 +31,14 @@ const ProductsList = () => {
   const { category: paramsCategory, page } = useParams();
 
   useEffect(() => {
-    setFilteredProducts(
-      products.filter((product) => product.category === paramsCategory)
-    );
-
-    setPageNumber(page);
-  }, [products, paramsCategory, setFilteredProducts, setPageNumber, page]);
+    if (paramsCategory === "all") {
+      setFilteredProducts(products);
+    } else {
+      setFilteredProducts(
+        products.filter((product) => product.category === paramsCategory)
+      );
+    }
+  }, [products, paramsCategory, setFilteredProducts]);
 
   return (
     <div>
