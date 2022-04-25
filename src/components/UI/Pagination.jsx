@@ -50,11 +50,17 @@ const Pagination = () => {
     //   }
     // }
 
-    for (let i = 1; i <= Math.ceil(products.length / itemsPerPage); i++) {
+    for (
+      let i = 1;
+      i <= Math.ceil(filteredProducts.length / itemsPerPage);
+      i++
+    ) {
       pages.push(i);
       setPages(pages);
     }
-  }, [itemsPerPage, products]);
+  }, [itemsPerPage, filteredProducts]);
+
+  console.log(filteredProducts);
 
   useEffect(() => {
     const indexOfLastItem = pageNumber * itemsPerPage;
@@ -78,7 +84,7 @@ const Pagination = () => {
   };
 
   const onNextPageHandler = () => {
-    console.log(pages);
+    // console.log(pages);
     if (pageNumber + 1 > pages.length) return;
     setPageNumber((prev) => prev + 1);
 
@@ -107,7 +113,7 @@ const Pagination = () => {
   return (
     <div className={styles.paginationContainer}>
       <Link
-        to={`/products/category/all/${
+        to={`/products/category/${category}/${
           pageNumber - 1 === 0 ? pageNumber : pageNumber - 1
         }`}
       >
@@ -115,7 +121,7 @@ const Pagination = () => {
       </Link>
       {renderPageNumbers}
       <Link
-        to={`/products/category/all/${
+        to={`/products/category/${category}/${
           pageNumber + 1 > pages.length ? pageNumber : pageNumber + 1
         }`}
       >

@@ -62,7 +62,8 @@ const ProductsList = () => {
             })
           )}
         </div>
-      </div>
+      </div>{" "}
+      <Pagination />
     </div>
   );
 };
