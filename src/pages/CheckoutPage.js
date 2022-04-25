@@ -55,8 +55,6 @@ const CheckoutPage = () => {
 
     currentOrderHistory.push(newOrder);
 
-    console.log(currentOrderHistory);
-
     const orderHistory = {
       orderHistory: [],
     };

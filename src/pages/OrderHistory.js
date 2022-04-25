@@ -9,7 +9,6 @@ const OrderHistory = () => {
       <div>
         {currentUser.currentUserOrderHistory
           ? currentUser.currentUserOrderHistory.reverse().map((order) => {
-              console.log(order);
               return (
                 <div key={order.date} className={styles.orderContainer}>
                   {" "}

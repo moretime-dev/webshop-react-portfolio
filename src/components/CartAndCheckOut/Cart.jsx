@@ -26,8 +26,6 @@ const Cart = () => {
     } else {
       setCheckoutButtonDisabled(true);
     }
-
-    console.log("test");
   }, [totalPrice]);
 
   const onProductQuantityDecreaseHandler = (productQuantity, id) => {

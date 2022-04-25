@@ -1,4 +1,3 @@
-import { useContext } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Header from "./components/UI/Header";
@@ -25,10 +24,6 @@ import RequireAuth from "./utils/RequireAuth";
 import "./App.css";
 
 function App() {
-  // const [products] = useContext(ProductsContext);
-
-  // console.log(products);
-
   return (
     <div className="App">
       <BrowserRouter>

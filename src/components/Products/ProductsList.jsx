@@ -43,7 +43,7 @@ const ProductsList = () => {
   return (
     <div>
       <FilterProducts />
-      <Pagination />
+      {/* <Pagination /> */}
       <div className={styles.productListContainerWrapper}>
         <div className={styles.productListContainer}>
           {products.length === 0 ? (
@@ -63,7 +63,7 @@ const ProductsList = () => {
           )}
         </div>
       </div>{" "}
-      <Pagination />
+      {/* <Pagination /> */}
     </div>
   );
 };
